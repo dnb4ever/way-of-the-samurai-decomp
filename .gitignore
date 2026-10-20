@@ -1,0 +1,11 @@
+disc/
+out/
+*.bin
+*.cue
+*.iso
+*.zip
+*.elf
+decompnet.db
+*.db
+.DS_Store
+__pycache__/
