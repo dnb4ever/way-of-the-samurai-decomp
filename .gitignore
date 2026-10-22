@@ -9,3 +9,26 @@ decompnet.db
 *.db
 .DS_Store
 __pycache__/
+
+# --- operational / local-only: secrets, live DB, logs, regenerable (added 2026-10-22) ---
+fleet_watchdog.sh
+*.bak-*
+*.log
+*.db
+*.db-wal
+*.db-shm
+decompnet.db*
+lock_llama.sh
+relaunch_llamaserver.sh
+*_cron.sh
+auto_floor_sweep.py
+smart_floor_sweep.py
+syscall_floors.py
+monitor_activity.py
+exclude_reviewed.py
+scaffold_backlog.txt
+excluded_floors.log
+ghidra_proj/
+recomp/
+recomp-ghidra/
+recomp-splat/
