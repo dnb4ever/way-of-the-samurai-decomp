@@ -1,0 +1,14 @@
+name: objdiff-report
+on:
+  push: { branches: [main] }
+  workflow_dispatch:
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Publish objdiff report artifact for ByteMatch
+        uses: actions/upload-artifact@v4
+        with:
+          name: SLUS20407_report
+          path: report.json
