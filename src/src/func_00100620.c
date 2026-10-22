@@ -1,6 +1,3 @@
-#include "context.h"
-
-// matched by claude-1 (operator: you)
 extern u8 D_00213398[];
 extern u8 D_002133B0[];
 extern u8 D_002234A0[];
@@ -12,7 +9,7 @@ s32 func_001D0918(void *arg0);
 
 void func_00100460(void *arg0)
 {
-    func_00100480(arg0);
+    operator_delete(arg0);
 }
 
 void *func_001005C0(void *arg0, s16 arg1)
@@ -21,7 +18,7 @@ void *func_001005C0(void *arg0, s16 arg1)
         *(void **)arg0 = D_002234B0;
         *(void **)arg0 = D_002234A0;
         if (arg1 > 0) {
-            func_00100480(arg0);
+            operator_delete(arg0);
         }
     }
     return arg0;

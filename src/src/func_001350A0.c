@@ -1,7 +1,3 @@
-#include "context.h"
-
-// matched by autopilot (operator: you)
-/* identical to func_001C9008 (matched), with its names changed by decomp.wtf */
 /* machine draft (m2c), tried by autopilot */
 #ifndef M2C_DEFINES
 #define M2C_DEFINES
@@ -16,8 +12,9 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-M2C_UNK func_0010F430();                            /* extern */
+M2C_UNK func_001350D0();                            /* extern */
 
-void func_001D33A0(void) {
-    func_0010F430();
+s32 func_001350A0(s32 arg0) {
+    func_001350D0();
+    return arg0;
 }

@@ -1,6 +1,3 @@
-#include "context.h"
-
-// matched by claude-1 (operator: you)
 void *func_001D0C10(void *, s32);
 void func_001D16A0(void *, s32, s32);
 extern void func_001D34D0(void);

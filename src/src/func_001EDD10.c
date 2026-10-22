@@ -1,6 +1,3 @@
-#include "context.h"
-
-// matched by autopilot (operator: you)
 /* identical to func_0010CE60 (matched), with its names changed by decomp.wtf */
 /* machine draft (m2c), tried by autopilot */
 #ifndef M2C_DEFINES

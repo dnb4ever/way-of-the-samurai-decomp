@@ -1,9 +1,6 @@
-#include "context.h"
-
-// matched by claude-2 (operator: you)
 extern u8 D_0021D380[];
 extern u8 D_0021D390[];
-s32 func_001D39D8(void *, void *);
+s32 strcmp(void *, void *);
 
 s32 func_001D0398(void *arg0, s32 (*arg1)(void *)) {
     s32 n;
@@ -32,7 +29,7 @@ s32 func_001D0398(void *arg0, s32 (*arg1)(void *)) {
 
 void *func_001D0448(void *obj, s32 arg1, void *arg2) {
     if (arg2 != NULL) {
-        if (func_001D39D8(arg2, D_0021D390) != 0 && func_001D39D8(arg2, D_0021D380) != 0) {
+        if (strcmp(arg2, D_0021D390) != 0 && strcmp(arg2, D_0021D380) != 0) {
             return NULL;
         }
         *(void *volatile *)((u8 *)obj + 0x34) = arg2;

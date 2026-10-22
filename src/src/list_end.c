@@ -1,0 +1,8 @@
+extern u8 list_iterator_vtable[];
+typedef struct { void *f0; void *f4; } S00134970;
+S00134970 *list_end(S00134970 *arg0, void *arg1) {
+    volatile S00134970 *p = arg0;
+    p->f4 = (void *)list_iterator_vtable;
+    p->f0 = arg1;
+    return arg0;
+}

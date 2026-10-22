@@ -32,3 +32,11 @@ ghidra_proj/
 recomp/
 recomp-ghidra/
 recomp-splat/
+
+# --- public-repo curation (2026-10-22): keep port patch scripts, drop bulk/stock/operational ---
+port-snapshot/ps2xRuntime/
+port-snapshot/ps2xIOP/
+port-snapshot/logs/
+sweep_floors.py
+ts_proxy.py
+port-snapshot/

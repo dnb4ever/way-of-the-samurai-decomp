@@ -1,6 +1,3 @@
-#include "context.h"
-
-// matched by claude-2 (operator: you)
 extern u8 D_00213318[];
 extern u8 D_00213330[];
 extern u8 D_002234A0[];
@@ -20,13 +17,13 @@ void *func_001004D0(void *arg0, s64 arg1)
     if (arg0 != 0) {
         *(void **)arg0 = D_002234A0;
         if ((s16)arg1 > 0) {
-            func_00100480(arg0);
+            operator_delete(arg0);
         }
     }
     return arg0;
 }
 
-void func_00100480(void *arg)
+void operator_delete(void *arg)
 {
     char buf[32];
     func_001D0970();

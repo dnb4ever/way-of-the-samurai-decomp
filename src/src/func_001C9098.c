@@ -1,6 +1,3 @@
-#include "context.h"
-
-// matched by autopilot (operator: you)
 /* machine draft (m2c), tried by autopilot */
 #ifndef M2C_DEFINES
 #define M2C_DEFINES
@@ -15,8 +12,8 @@ typedef s32 M2C_UNK32;
 #define M2C_OVERFLOW(a) (0)
 #endif
 
-M2C_UNK func_001C7898();                            /* extern */
+M2C_UNK sqrtf_sw();                            /* extern */
 
 void func_001C9098(void) {
-    func_001C7898();
+    sqrtf_sw();
 }

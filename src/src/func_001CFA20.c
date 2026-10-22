@@ -1,8 +1,5 @@
-#include "context.h"
-
-// matched by claude-1 (operator: you)
 extern s32 D_00210F40;
-extern void func_001CF738(void);
+extern void fflush(void);
 void func_001D0398(void *a, void *b);
 void *func_001D0C10(s32);
 void func_001D16A0(void *, s32, s32);
@@ -19,7 +16,7 @@ s32 func_001CF728(void)
 
 void func_001CFA20(void *arg0)
 {
-    func_001D0398(arg0, (void *)func_001CF738);
+    func_001D0398(arg0, (void *)fflush);
 }
 
 void func_001CF850(void *arg0, s16 arg1, s16 arg2, s32 arg3)

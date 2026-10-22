@@ -1,6 +1,3 @@
-#include "context.h"
-
-// matched by claude-2 (operator: you)
 extern s32 func_001CFFB8(void);
 
 s32 func_001D56E8(void *a0, s32 *arg1)

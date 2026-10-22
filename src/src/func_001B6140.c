@@ -1,6 +1,3 @@
-#include "context.h"
-
-// matched by autopilot (operator: you)
 /* machine draft (m2c), tried by autopilot */
 #ifndef M2C_DEFINES
 #define M2C_DEFINES

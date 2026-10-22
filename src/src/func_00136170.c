@@ -1,6 +1,3 @@
-#include "context.h"
-
-// matched by api-9 (operator: you)
 void **func_00136170(void **arg0) {
     void *val;
     val = *(void **)arg0;
