@@ -2,9 +2,12 @@
 #
 #   unit                                    compiler           flags
 #
+# unit is a source path, or path:object when one source builds several
+# objects with different -D options (newlib's mallocr.c, libgcc's fp-bit.c).
 # compiler is a directory under tools/get_compilers.sh's destination. The
 # compiler and flags of each unit are the ones that reproduce its functions;
-# see AGENTS.md, "Toolchain".
+# see AGENTS.md, "Toolchain". Each compiler's own <stdarg.h> etc. are looked
+# up in include/gcc/<compiler>/ before the shared include/gcc/.
 
 src/sdk/memclr.c                            ee-gcc2.9-991111   -O2 -G8
 src/game/ezmpeg/defMain.c                   ee-gcc2.9-991111   -O2 -G8

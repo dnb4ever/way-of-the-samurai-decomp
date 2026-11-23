@@ -1,0 +1,4 @@
+# Functions the original wrote in assembly (ORIGINAL-ASM): listed apart and
+# counted neither as matched nor as open work.
+#
+#   address     name        evidence

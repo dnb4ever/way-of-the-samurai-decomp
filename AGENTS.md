@@ -87,8 +87,29 @@ modified compiler that reproduces the bytes proves nothing about the source.
 
 ### Rules this project relaxes or tightens
 
-None yet. Rule changes are the maintainers' ruling, recorded here with the reason, with the checker updated in
-the same commit.
+Rule changes are the maintainers' ruling, recorded here with the reason, with the checker updated in the same
+commit.
+
+- **Adopted upstream source is exempt from R2, R4 and R17.** Files under the prefixes in `config/upstream.txt`
+  (newlib, libgcc) are the original source, used verbatim: their `extern`s, chunk macros and arithmetic are what
+  the original programmers wrote. R1 and R18 still apply, and the files keep their upstream style.
+- **Original inline-assembly helpers (R18's exception)** are listed in `config/asm_helpers.txt` with their
+  evidence: a macro or inline function the original had for an instruction C cannot express (the EE's
+  `sync.l`, `ei`, `di`). Functions that use a listed helper count as matched. A function whose whole body is
+  assembly in the original is `ORIGINAL-ASM` instead (listed in `config/original_asm.txt`), counted neither way.
+
+### Build rulings
+
+- **`-ffunction-sections`** may be added to a unit's flags. It changes no code bytes (the per-function check
+  proves that for every function it compiles) and lets a unit with parked functions in the middle be checked.
+  It does not claim anything about the original object's layout.
+- **One source, several objects.** A unit may be `path:object` when the original built one source file several
+  times with different `-D` options (newlib's `mallocr.c`, libgcc's `fp-bit.c`, `libgcc2.c`).
+- **Compiler headers.** `include/gcc/<compiler>/` holds a compiler's own `<stdarg.h>` and friends when they
+  differ from the shared `include/gcc/` (gcc 2.95's), and is searched first.
+- **Back-ported upstream lines.** Where the retail library is an unpublished vendor revision, a public upstream
+  file may carry a line from a later upstream revision when the bytes show it, with a comment at the line
+  naming the upstream commit. Nothing else may be edited in adopted files.
 
 ## Ledgers
 

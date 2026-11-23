@@ -1,7 +1,7 @@
 /*
  * rules.c -- the decomp-code-rules checker for this project.
  *
- * Usage: rules [-m fncheck.txt [-j report.json -T totals.txt]] [-q] file.c file.h ...
+ * Usage: rules [-m fncheck.txt [-j report.json -T totals.txt]] [-u prefix] [-a helper] [-q] file.c file.h ...
  *
  * Reports one line per finding:
  *     file:line: [match] R4 FunctionName: offset cast on a byte pointer
@@ -17,6 +17,15 @@
  * every [match] rule. With -j, those numbers are also written as an objdiff
  * style progress report; -T names the file holding the image's totals
  * ("total_code N" and "total_functions N" lines).
+ *
+ * With -a <name> (repeatable), a macro or inline function of that name is an
+ * original inline-assembly helper (R18's exception, e.g. the EE's "sync.l"
+ * or "ei"): assembly inside its definition is not reported.
+ *
+ * With -u <prefix> (repeatable), files whose path contains the prefix are
+ * adopted upstream source (newlib, libgcc), used verbatim: their code is the
+ * original, so R2, R4 and R17 do not apply to it and no advice is reported.
+ * R1 and R18 still apply.
  *
  * The checks are deliberately narrow (see decomp-code-rules, "Making [match]
  * mechanical"): hardware volatile with a "// volatile:" note, struct
@@ -35,6 +44,7 @@ typedef struct {
     char *text;      /* original text */
     char *code;      /* comments and literals blanked, newlines kept */
     int   isHeader;
+    int   upstream;  /* verbatim upstream source (-u) */
     int   numLines;
     char **lineCode; /* per-line views into code */
     char **lineText; /* per-line views into text */
@@ -55,6 +65,10 @@ static Function   g_funcs[MAX_FUNCS];
 static int        g_numFuncs;
 static int        g_quiet;
 static int        g_matchCount, g_adviceCount;
+static const char *g_upstream[64];
+static const char *g_asmHelpers[64];
+static int        g_numAsmHelpers;
+static int        g_numUpstream;
 
 /* ------------------------------------------------------------------ */
 
@@ -144,6 +158,10 @@ static int LoadSource(const char *path)
         return 0;
     f->path     = strdup(path);
     f->isHeader = len > 2 && path[len - 1] == 'h' && path[len - 2] == '.';
+    for (i = 0; i < g_numUpstream; i++) {
+        if (strstr(path, g_upstream[i]))
+            f->upstream = 1;
+    }
     f->code     = StripCode(f->text);
     f->lineCode = SplitLines(f->code, &f->numLines);
     f->lineText = SplitLines(f->text, &n2);
@@ -210,6 +228,7 @@ static void FindFunctions(int fi)
     SourceFile *f = &g_files[fi];
     int         line, depth = 0, cur = -1;
     char        prev[2048] = "";
+    char        decl[4096] = "";  /* since the last '}' or directive: sees K&R parameter lists */
 
     for (line = 0; line < f->numLines; line++) {
         const char *p = f->lineCode[line];
@@ -219,6 +238,7 @@ static void FindFunctions(int fi)
             t++;
         if (*t == '#' || f->inMacro[line]) {
             prev[0] = '\0';
+            decl[0] = '\0';
             continue;
         }
         for (; *p; p++) {
@@ -231,6 +251,31 @@ static void FindFunctions(int fi)
                     const char *tail = prev + strlen(prev);
                     while (tail > prev && isspace((unsigned char)tail[-1]))
                         tail--;
+                    if (!(paren && tail > prev && tail[-1] == ')')) {
+                        /*
+                         * K&R definition: "name(a, b) int a; char *b; {". Take the last
+                         * top-level ')' followed by a parameter declaration.
+                         */
+                        int level = 0, k, cut = -1;
+                        for (k = 0; decl[k]; k++) {
+                            if (decl[k] == '(')
+                                level++;
+                            else if (decl[k] == ')' && --level == 0) {
+                                const char *after = decl + k + 1;
+                                while (isspace((unsigned char)*after))
+                                    after++;
+                                if (IsIdentChar((unsigned char)*after) && strchr(after, ';') &&
+                                    !strchr(after, '=') && !strchr(after, '('))
+                                    cut = k;
+                            }
+                        }
+                        if (cut >= 0 && cut + 1 < (int)sizeof(prev)) {
+                            memcpy(prev, decl, cut + 1);
+                            prev[cut + 1] = '\0';
+                            paren = strrchr(prev, ')');
+                            tail = prev + cut + 1;
+                        }
+                    }
                     if (paren && tail > prev && tail[-1] == ')' && !strchr(prev, '=') &&
                         !FindWordIn(prev, "typedef")) {
                         int level = 0;
@@ -255,6 +300,20 @@ static void FindFunctions(int fi)
                                     n = sizeof(fn->name) - 1;
                                 memcpy(fn->name, start, n);
                                 fn->name[n] = '\0';
+                                /* newlib's _DEFUN(name, (params), decls) */
+                                if (strcmp(fn->name, "_DEFUN") == 0) {
+                                    const char *q = strchr(end, '(');
+                                    size_t      m = 0;
+                                    if (q != NULL) {
+                                        q++;
+                                        while (isspace((unsigned char)*q))
+                                            q++;
+                                        while (IsIdentChar((unsigned char)q[m]) && m + 1 < sizeof(fn->name))
+                                            m++;
+                                        memcpy(fn->name, q, m);
+                                        fn->name[m] = '\0';
+                                    }
+                                }
                                 fn->file = fi;
                                 fn->first = line + 1;
                                 fn->parked = f->parked[line];
@@ -291,6 +350,7 @@ static void FindFunctions(int fi)
                 }
                 depth++;
                 prev[0] = '\0';
+                decl[0] = '\0';
             } else if (*p == '}') {
                 depth--;
                 if (depth == 0 && cur >= 0) {
@@ -298,8 +358,15 @@ static void FindFunctions(int fi)
                     cur = -1;
                 }
                 prev[0] = '\0';
+                decl[0] = '\0';
             } else if (depth == 0) {
-                size_t n = strlen(prev);
+                size_t n = strlen(prev), d = strlen(decl);
+                if (d + 2 >= sizeof(decl)) {
+                    memmove(decl, decl + d / 2, d - d / 2 + 1);
+                    d = strlen(decl);
+                }
+                decl[d] = *p;
+                decl[d + 1] = '\0';
                 if (*p == ';') {
                     prev[0] = '\0';
                 } else if (n + 1 < sizeof(prev)) {
@@ -309,7 +376,11 @@ static void FindFunctions(int fi)
             }
         }
         if (depth == 0) {
-            size_t n = strlen(prev);
+            size_t n = strlen(prev), d = strlen(decl);
+            if (d + 2 < sizeof(decl)) {
+                decl[d] = ' ';
+                decl[d + 1] = '\0';
+            }
             if (n + 1 < sizeof(prev)) {
                 prev[n] = ' ';
                 prev[n + 1] = '\0';
@@ -338,6 +409,8 @@ static void Finding(int fi, int line, int isMatch, const char *rule, const char 
     char      msg[512];
 
     if (isMatch && g_files[fi].parked[line - 1])
+        return;
+    if (g_files[fi].upstream && (!isMatch || strcmp(rule, "R1") != 0) && strcmp(rule, "R18") != 0)
         return;
     snprintf(msg, sizeof(msg), fmt, arg);
     if (isMatch) {
@@ -425,9 +498,38 @@ static void CheckLine(int fi, int line)
     const char *p;
     Function   *fn = FunctionAt(fi, line);
 
-    /* R18: assembly */
-    if (FindWord(code, "asm") || FindWord(code, "__asm__") || FindWord(code, "__asm") || strstr(code, "INCLUDE_ASM"))
-        Finding(fi, line, 1, "R18", "%sinline assembly", "");
+    /* R18: assembly, except inside a listed original helper */
+    if (FindWord(code, "asm") || FindWord(code, "__asm__") || FindWord(code, "__asm") || strstr(code, "INCLUDE_ASM")) {
+        const char *owner = fn ? fn->name : NULL;
+        char        macro[128] = "";
+        int         k, helper = 0;
+
+        if (f->inMacro[line - 1]) {
+            int         l = line - 1;
+            const char *d;
+            while (l > 0 && !strstr(f->lineCode[l], "define"))
+                l--;
+            d = strstr(f->lineCode[l], "define");
+            if (d) {
+                int m = 0;
+                d += 6;
+                while (*d == ' ' || *d == '\t')
+                    d++;
+                while (IsIdent((unsigned char)d[m]) && m < 127) {
+                    macro[m] = d[m];
+                    m++;
+                }
+                macro[m] = '\0';
+                owner = macro;
+            }
+        }
+        for (k = 0; owner && k < g_numAsmHelpers; k++) {
+            if (strcmp(owner, g_asmHelpers[k]) == 0)
+                helper = 1;
+        }
+        if (!helper)
+            Finding(fi, line, 1, "R18", "%sinline assembly", "");
+    }
 
     /* R2: extern declarations belong in headers */
     if (!f->isHeader && !f->inMacro[line - 1] && FindWord(code, "extern"))
@@ -738,6 +840,10 @@ int main(int argc, char **argv)
             totalsPath = argv[++i];
         else if (strcmp(argv[i], "-q") == 0)
             g_quiet = 1;
+        else if (strcmp(argv[i], "-a") == 0 && i + 1 < argc && g_numAsmHelpers < 64)
+            g_asmHelpers[g_numAsmHelpers++] = argv[++i];
+        else if (strcmp(argv[i], "-u") == 0 && i + 1 < argc && g_numUpstream < 64)
+            g_upstream[g_numUpstream++] = argv[++i];
         else if (g_numFiles < MAX_FILES && !LoadSource(argv[i]))
             fprintf(stderr, "cannot read %s\n", argv[i]);
     }

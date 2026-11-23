@@ -56,11 +56,12 @@ declare -a UNITS PARKED
 units_of() { grep -v '^\s*\(#\|$\)' "$1" 2>/dev/null; }
 if [ $# -gt 0 ]; then
     for u in "$@"; do
-        line=$(awk -v u="$u" '$1==u' "$REPO/config/units.txt")
-        pline=$(awk -v u="$u" '$1==u' "$REPO/config/parked.txt" 2>/dev/null)
-        if [ -n "$line" ]; then UNITS+=("$line")
-        elif [ -n "$pline" ]; then PARKED+=("$pline")
-        else echo "$u is not in config/units.txt or config/parked.txt"; exit 2; fi
+        # a unit is "path" or "path:object"; naming the path selects all its objects
+        sel='$1==u || index($1, u":")==1'
+        found=0
+        while IFS= read -r line; do UNITS+=("$line"); found=1; done < <(awk -v u="$u" "$sel" "$REPO/config/units.txt")
+        while IFS= read -r line; do PARKED+=("$line"); found=1; done < <(awk -v u="$u" "$sel" "$REPO/config/parked.txt" 2>/dev/null)
+        [ $found -eq 1 ] || { echo "$u is not in config/units.txt or config/parked.txt"; exit 2; }
     done
 else
     while IFS= read -r line; do UNITS+=("$line"); done < <(units_of "$REPO/config/units.txt")
@@ -68,14 +69,16 @@ else
 fi
 [ ${#UNITS[@]} -gt 0 ] || [ $NONMATCHING -eq 1 ] || { echo "no units to build"; exit 2; }
 
-compile() {  # unit compiler flags... -> object path on stdout
-    local unit=$1 comp=$2; shift 2
+compile() {  # unit[:object] compiler flags... -> object path on stdout
+    local spec=$1 comp=$2; shift 2
+    local unit=${spec%%:*}
     local out=$OBJ/${unit%.c}.o
+    if [ "$spec" != "$unit" ]; then out=$OBJ/$(dirname "$unit")/${spec#*:}.o; fi
     mkdir -p "$(dirname "$out")"
     local cc1
     cc1=$(dirname "$(find "$COMPILERS/$comp" -name cc1 | head -1)")
     (cd "$WORK" && "$COMPILERS/$comp/bin/ee-gcc" -B "$cc1/" -B "$COMPILERS/$comp/bin/ee-" \
-        -c -nostdinc -Iinclude -Iinclude/gcc "$@" ${EXTRA_CFLAGS:-} "$unit" -o "$out") >&2 || return 1
+        -c -nostdinc -Iinclude -Iinclude/gcc/$comp -Iinclude/gcc "$@" ${EXTRA_CFLAGS:-} "$unit" -o "$out") >&2 || return 1
     echo "$out"
 }
 
@@ -102,9 +105,16 @@ fi
 
 # ---- rules ------------------------------------------------------------------------
 SOURCES=()
-for line in "${UNITS[@]}" "${PARKED[@]}"; do read -r unit _ <<<"$line"; SOURCES+=("$REPO/$unit"); done
+for line in "${UNITS[@]}" "${PARKED[@]}"; do
+    read -r unit _ <<<"$line"
+    src="$REPO/${unit%%:*}"
+    case " ${SOURCES[*]} " in *" $src "*) ;; *) SOURCES+=("$src") ;; esac
+done
 HEADERS=$(find "$REPO/include" -name '*.h' -not -path '*/include/gcc/*')
-"$HOSTBIN/rules" -m "$BUILD/fncheck.txt" -j "$BUILD/report.json" -T "$REPO/config/totals.txt" \
+UPSTREAM=()
+while IFS= read -r prefix; do UPSTREAM+=(-u "$prefix"); done < <(units_of "$REPO/config/upstream.txt")
+while read -r helper _; do UPSTREAM+=(-a "$helper"); done < <(units_of "$REPO/config/asm_helpers.txt")
+"$HOSTBIN/rules" -m "$BUILD/fncheck.txt" -j "$BUILD/report.json" -T "$REPO/config/totals.txt" "${UPSTREAM[@]}" \
     "${SOURCES[@]}" $HEADERS > "$BUILD/rules.txt"
 grep -E '^(MATCH-PENDING|matched under|bytes matched|[0-9]+ \[match\])' "$BUILD/rules.txt" | tee "$BUILD/summary.txt"
 

@@ -1,0 +1,6 @@
+# Inline-assembly helpers the original source had (R18's "original helper"
+# exception): macros or inline functions, one name per line, whose
+# definition may contain asm. Functions that use them count as matched; the
+# helper itself is listed here with its evidence.
+#
+#   name            evidence
