@@ -3,3 +3,6 @@
 // Library names recovered from other games' symbols are in symbols_debug.txt.
 //
 //   name = 0xADDRESS; // type:func size:0xN  evidence
+defMain = 0x001EB950; // type:func size:0x18  ezmpeg sample, C++: defMain__FPv in symbols_debug.txt
+videoDecDelete = 0x001EE1A0; // type:func size:0x34  ezmpeg sample, C++: videoDecDelete__FP8VideoDec in symbols_debug.txt
+videoDecSetStream = 0x001EE200; // type:func size:0x20  ezmpeg sample, C++: videoDecSetStream__FP8VideoDeciiPFP7sceMpegP13sceMpegCbDataPv_iPv in symbols_debug.txt
