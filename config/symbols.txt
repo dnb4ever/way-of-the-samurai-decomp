@@ -63,3 +63,4 @@ __malloc_sbrk_base = 0x00211368; // type:data size:0x4  newlib mallocr.o .data
 __malloc_max_sbrked_mem = 0x00211370; // type:data size:0x8  newlib mallocr.o .data
 __malloc_max_total_mem = 0x00211378; // type:data size:0x8  newlib mallocr.o .data
 __malloc_current_mallinfo = 0x00211380; // type:data size:0x28  newlib mallocr.o .data
+__thenan_df = 0x0021E058; // type:data size:0x18  libgcc fp-bit.c (_thenan_df object); read by _fpadd_parts

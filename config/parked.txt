@@ -93,3 +93,15 @@ src/game/func_001F0880.c                    ee-gcc2.9-991111   -O2 -G8
 src/game/func_001F09B0.c                    ee-gcc2.9-991111   -O2 -G8
 src/game/func_001F2CC0.c                    ee-gcc2.9-991111   -O2 -G8
 src/sdk/libkernl/intr.c                     ee-gcc2.9-991111   -O2 -G0
+
+# libgcc soft-float objects whose retail code is the Cygnus r5900 fp-bit.c,
+# which is not public: single precision rounds toward zero and has no
+# infinities or NaNs (__pack_f, __unpack_f); double precision rounds toward
+# zero in dpmul/dpdiv/__pack_d, and __unpack_d turns infinity into the
+# largest finite value. Closest public source: gcc fp-bit.c of 2000-09-08.
+src/libgcc/fp-bit.c:_pack_sf                ee-gcc2.96         -O2 -G0 -DFINE_GRAINED_LIBRARIES -DFLOAT_BIT_ORDER_MISMATCH -DUS_SOFTWARE_GOFAST -DFLOAT -DNO_NANS -DNO_DENORMALS -DL_pack_sf
+src/libgcc/fp-bit.c:_unpack_sf              ee-gcc2.96         -O2 -G0 -DFINE_GRAINED_LIBRARIES -DFLOAT_BIT_ORDER_MISMATCH -DUS_SOFTWARE_GOFAST -DFLOAT -DNO_NANS -DNO_DENORMALS -DL_unpack_sf
+src/libgcc/fp-bit.c:_pack_df                ee-gcc2.96         -O2 -G0 -DFINE_GRAINED_LIBRARIES -DFLOAT_BIT_ORDER_MISMATCH -DUS_SOFTWARE_GOFAST -DL_pack_df
+src/libgcc/fp-bit.c:_unpack_df              ee-gcc2.96         -O2 -G0 -DFINE_GRAINED_LIBRARIES -DFLOAT_BIT_ORDER_MISMATCH -DUS_SOFTWARE_GOFAST -DL_unpack_df
+src/libgcc/fp-bit.c:_mul_df                 ee-gcc2.96         -O2 -G0 -DFINE_GRAINED_LIBRARIES -DFLOAT_BIT_ORDER_MISMATCH -DUS_SOFTWARE_GOFAST -DL_mul_df
+src/libgcc/fp-bit.c:_div_df                 ee-gcc2.96         -O2 -G0 -DFINE_GRAINED_LIBRARIES -DFLOAT_BIT_ORDER_MISMATCH -DUS_SOFTWARE_GOFAST -DL_div_df

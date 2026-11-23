@@ -199,6 +199,19 @@ src/libc/string/strncasecmp.c               ee-gcc2.96         -O2 -G0 -g -fno-b
 src/libc/string/strspn.c                    ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
 src/libc/string/strstr.c                    ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
 
+src/libgcc/fp-bit.c:_addsub_df              ee-gcc2.96         -O2 -G0 -DFINE_GRAINED_LIBRARIES -DFLOAT_BIT_ORDER_MISMATCH -DUS_SOFTWARE_GOFAST -DL_addsub_df
+src/libgcc/fp-bit.c:_compare_df             ee-gcc2.96         -O2 -G0 -DFINE_GRAINED_LIBRARIES -DFLOAT_BIT_ORDER_MISMATCH -DUS_SOFTWARE_GOFAST -DL_compare_df
+src/libgcc/fp-bit.c:_df_to_sf               ee-gcc2.96         -O2 -G0 -DFINE_GRAINED_LIBRARIES -DFLOAT_BIT_ORDER_MISMATCH -DUS_SOFTWARE_GOFAST -DL_df_to_sf
+src/libgcc/fp-bit.c:_df_to_si               ee-gcc2.96         -O2 -G0 -DFINE_GRAINED_LIBRARIES -DFLOAT_BIT_ORDER_MISMATCH -DUS_SOFTWARE_GOFAST -DL_df_to_si
+src/libgcc/fp-bit.c:_df_to_usi              ee-gcc2.96         -O2 -G0 -DFINE_GRAINED_LIBRARIES -DFLOAT_BIT_ORDER_MISMATCH -DUS_SOFTWARE_GOFAST -DL_df_to_usi
+src/libgcc/fp-bit.c:_fpcmp_parts_df         ee-gcc2.96         -O2 -G0 -DFINE_GRAINED_LIBRARIES -DFLOAT_BIT_ORDER_MISMATCH -DUS_SOFTWARE_GOFAST -DL_fpcmp_parts_df
+src/libgcc/fp-bit.c:_make_df                ee-gcc2.96         -O2 -G0 -DFINE_GRAINED_LIBRARIES -DFLOAT_BIT_ORDER_MISMATCH -DUS_SOFTWARE_GOFAST -DL_make_df
+src/libgcc/fp-bit.c:_make_sf                ee-gcc2.96         -O2 -G0 -DFINE_GRAINED_LIBRARIES -DFLOAT_BIT_ORDER_MISMATCH -DUS_SOFTWARE_GOFAST -DFLOAT -DNO_NANS -DNO_DENORMALS -DL_make_sf
+src/libgcc/fp-bit.c:_sf_to_df               ee-gcc2.96         -O2 -G0 -DFINE_GRAINED_LIBRARIES -DFLOAT_BIT_ORDER_MISMATCH -DUS_SOFTWARE_GOFAST -DFLOAT -DNO_NANS -DNO_DENORMALS -DL_sf_to_df
+src/libgcc/fp-bit.c:_sf_to_si               ee-gcc2.96         -O2 -G0 -DFINE_GRAINED_LIBRARIES -DFLOAT_BIT_ORDER_MISMATCH -DUS_SOFTWARE_GOFAST -DFLOAT -DNO_NANS -DNO_DENORMALS -DL_sf_to_si
+src/libgcc/fp-bit.c:_sf_to_usi              ee-gcc2.96         -O2 -G0 -DFINE_GRAINED_LIBRARIES -DFLOAT_BIT_ORDER_MISMATCH -DUS_SOFTWARE_GOFAST -DFLOAT -DNO_NANS -DNO_DENORMALS -DL_sf_to_usi
+src/libgcc/fp-bit.c:_si_to_df               ee-gcc2.96         -O2 -G0 -DFINE_GRAINED_LIBRARIES -DFLOAT_BIT_ORDER_MISMATCH -DUS_SOFTWARE_GOFAST -DL_si_to_df
+
 src/libm/common/sf_copysign.c               ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -D_IEEE_LIBM -D_FLT_LARGEST_EXPONENT_IS_NORMAL -D_FLT_NO_DENORMALS -Iinclude/libc -Isrc/libm/common
 src/libm/common/sf_scalbn.c                 ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -D_IEEE_LIBM -D_FLT_LARGEST_EXPONENT_IS_NORMAL -D_FLT_NO_DENORMALS -Iinclude/libc -Isrc/libm/common
 src/libm/math/e_acos.c                      ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -D_IEEE_LIBM -D_FLT_LARGEST_EXPONENT_IS_NORMAL -D_FLT_NO_DENORMALS -Iinclude/libc -Isrc/libm/common
