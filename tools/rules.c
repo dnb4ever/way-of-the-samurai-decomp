@@ -629,8 +629,19 @@ static void CheckTypes(void)
             if (FindWord(c, "typedef") && strchr(c, ';') && !strchr(c, '(')) {
                 const char *end = strrchr(c, ';');
                 const char *q = end;
-                while (q > c && (q[-1] == ' ' || q[-1] == ']' || isdigit((unsigned char)q[-1]) || q[-1] == '['))
-                    q--;
+                /* skip spaces and trailing array dimensions "[N]", never digits of the name */
+                for (;;) {
+                    while (q > c && q[-1] == ' ')
+                        q--;
+                    if (q > c && q[-1] == ']') {
+                        while (q > c && q[-1] != '[')
+                            q--;
+                        if (q > c)
+                            q--;
+                        continue;
+                    }
+                    break;
+                }
                 end = q;
                 while (q > c && IsIdent((unsigned char)q[-1]))
                     q--;
