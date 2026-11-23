@@ -7,3 +7,8 @@
 # see AGENTS.md, "Toolchain".
 
 src/sdk/memclr.c                            ee-gcc2.9-991111   -O2 -G8
+src/game/func_00134960.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0015EF50.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0015F790.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00165190.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00165230.c                    ee-gcc2.9-991111   -O2 -G8
