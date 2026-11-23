@@ -13,3 +13,7 @@ sceVif1PkReserve = 0x00105548; // type:func size:0x14  libpkt vif1 object; bytes
 sceVif1PkAddGsData = 0x00105650; // type:func size:0x28  libpkt vif1 object; bytes equal sceGifPkAddGsData
 sceVif1PkOpenDirectHLCode = 0x001058e0; // type:func size:0x58  libpkt vif1 object; VIF code DIRECTHL (0x51), called by sceVif1PkRefLoadImage
 sceVif1PkCloseDirectHLCode = 0x00105938; // type:func size:0x2c  libpkt vif1 object; closes sceVif1PkOpenDirectHLCode in sceVif1PkRefLoadImage
+close = 0x0010f348; // type:func size:0x8  libkernl glue; called by newlib _close_r
+lseek = 0x0010f358; // type:func size:0x8  libkernl glue; called by newlib _lseek_r
+isatty = 0x0010f410; // type:func size:0x8  libkernl glue; called by newlib __smakebuf
+getpid = 0x0010f430; // type:func size:0x8  libkernl glue; tail-called by newlib _getpid_r
