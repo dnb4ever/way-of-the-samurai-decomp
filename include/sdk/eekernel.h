@@ -40,6 +40,18 @@ int  iDisableIntc(int ch);
 int  iEnableDmac(int ch);
 int  iDisableDmac(int ch);
 
+int  GetMemorySize(void);
+int  _InitTLB(void);
+int  InitTLB(void);
+int  func_001171D0(void);
+void InitTLBFunctions(void);
+void func_001177C0(void);
+u32 *func_00117850(void);
+void InitAlarm(void);
+int  InitThread(void);
+void func_001179D0(void);
+void _InitSys(void);
+
 /* data cache maintenance over [start, end], by 64-byte lines */
 void _sceSDC(u32 start, u32 end);
 void _sceIDC(u32 start, u32 end);

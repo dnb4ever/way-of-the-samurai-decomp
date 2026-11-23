@@ -25,3 +25,5 @@ _alalcSetDynamic = 0x0010d1c8; // type:func size:0xc  libmpeg alalc; symbols_deb
 _alalcFree = 0x0010d1d8; // type:func size:0xc  libmpeg alalc; symbols_debug places it mid-function at 0x10d218
 sceSifRemoveCmdHandler = 0x00111208; // type:func size:0x28  size: symbols_debug's 0x15c runs into the next function
 sceSifExitRpc = 0x00111760; // type:func size:0x24  size: symbols_debug's 0x278 runs into the packet functions after it
+_InitSys = 0x001178c0; // type:func size:0x3c  size: symbols_debug's 0x110 runs past the function
+sceSifLoadStartModuleBuffer = 0x00116670; // type:func size:0x1c  passes the caller's result pointer to the loader sceSifLoadModuleBuffer calls with its own; symbols_debug places it at 0x116688
