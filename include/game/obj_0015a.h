@@ -3,7 +3,7 @@
 #define GAME_OBJ_0015A_H
 
 #include "common.h"
-#include "game/vu0.h"
+#include "sdk/libvu0.h"
 
 /* a VU0 vector: its copy constructors copy it with func_00105CE0 */
 typedef struct Obj_0015AF70 {

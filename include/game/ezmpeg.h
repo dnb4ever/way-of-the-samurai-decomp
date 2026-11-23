@@ -3,23 +3,14 @@
 #define GAME_EZMPEG_H
 
 #include "common.h"
+#include "sdk/eekernel.h"
+#include "sdk/libmpeg.h"
 
 /*
  * The sample was compiled as C++: its functions carry mangled names in
  * other games' symbols (videoDecDelete__FP8VideoDec), which also give the
  * class names below. Only the members the functions here use are known.
  */
-
-/*
- * libmpeg's decoder and callback data (Sony SDK). Their layout belongs to
- * the SDK headers; only sceMpeg's size is needed here: a VideoDec embeds
- * it, and the ViBuf follows it at 0x48.
- */
-typedef struct sceMpeg {
-    u8 unk_00[0x48];
-} sceMpeg;
-
-typedef struct sceMpegCbData sceMpegCbData;
 
 typedef struct ReadBuf ReadBuf;
 
@@ -28,7 +19,7 @@ typedef struct ViBuf {
 } ViBuf;
 
 typedef struct VideoDec {
-    sceMpeg mpeg;
+    sceMpeg mpeg;               /* 0x00, 0x48 bytes */
     ViBuf   vibuf;
     s32     unk_A8;
 } VideoDec;
@@ -41,13 +32,6 @@ typedef struct VoBuf {
 
 extern s32 D_00224AC0;
 extern s32 D_00224AD4;
-
-/* Sony SDK functions the sample calls (libkernl, libmpeg) */
-s32 RotateThreadReadyQueue(s32 priority);
-void *sceMpegAddStrCallback(sceMpeg *mp, s32 strType, s32 ch,
-                            s32 (*callback)(sceMpeg *mp, sceMpegCbData *cbdata, void *data),
-                            void *data);
-s32 func_0010CE60(sceMpeg *mp);
 
 /* functions, by address */
 void func_001EB3D0(void);

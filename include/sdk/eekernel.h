@@ -21,6 +21,8 @@
 
 int Deci2Call(int func, u32 *param);
 
+int  RotateThreadReadyQueue(int priority);
+
 int  DIntr(void);
 int  EIntr(void);
 

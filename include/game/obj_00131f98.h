@@ -3,7 +3,7 @@
 #define GAME_OBJ_00131F98_H
 
 #include "common.h"
-#include "game/vu0.h"
+#include "sdk/libvu0.h"
 
 /*
  * func_00131F98(obj, index, a, b) calls handler D_00202C90[index](obj, a, b)

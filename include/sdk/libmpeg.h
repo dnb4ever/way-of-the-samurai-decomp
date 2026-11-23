@@ -85,6 +85,13 @@ void sceMpegResetDefaultPtsGap(sceMpeg *mp);
 int  sceSetBrokenLink(sceMpeg *mp, int brokenLink);
 void sceSetPtm(sceMpeg *mp, s64 ptm);
 
+/* stream callbacks (layout of the callback data unknown) */
+typedef struct sceMpegCbData sceMpegCbData;
+void *sceMpegAddStrCallback(sceMpeg *mp, s32 strType, s32 ch,
+                            s32 (*callback)(sceMpeg *mp, sceMpegCbData *cbdata, void *data),
+                            void *data);
+s32 func_0010CE60(sceMpeg *mp);
+
 /* the decoder's linear allocator */
 typedef struct {
     u8 *base;       /* 0x00 */
