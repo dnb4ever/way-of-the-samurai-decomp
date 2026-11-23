@@ -21,4 +21,23 @@
 
 int Deci2Call(int func, u32 *param);
 
+int  DIntr(void);
+int  EIntr(void);
+
+int  _iEnableIntc(int ch);
+int  _iDisableIntc(int ch);
+int  _iEnableDmac(int ch);
+int  _iDisableDmac(int ch);
+
+int  iEnableIntc(int ch);
+int  iDisableIntc(int ch);
+int  iEnableDmac(int ch);
+int  iDisableDmac(int ch);
+
+/* data cache maintenance over [start, end], by 64-byte lines */
+void _sceSDC(u32 start, u32 end);
+void _sceIDC(u32 start, u32 end);
+void iSyncDCache(void *start, void *end);
+void iInvalidDCache(void *start, void *end);
+
 #endif /* SDK_EEKERNEL_H */

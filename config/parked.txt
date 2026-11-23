@@ -4,3 +4,4 @@
 # rule checker reads them on every build.
 #
 #   unit                                    compiler           flags
+src/sdk/libkernl/intr.c                     ee-gcc2.9-991111   -O2 -G0

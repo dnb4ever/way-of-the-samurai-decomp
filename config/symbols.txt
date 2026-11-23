@@ -17,3 +17,7 @@ close = 0x0010f348; // type:func size:0x8  libkernl glue; called by newlib _clos
 lseek = 0x0010f358; // type:func size:0x8  libkernl glue; called by newlib _lseek_r
 isatty = 0x0010f410; // type:func size:0x8  libkernl glue; called by newlib __smakebuf
 getpid = 0x0010f430; // type:func size:0x8  libkernl glue; tail-called by newlib _getpid_r
+iInvalidDCache = 0x0010f718; // type:func size:0x14  libkernl; tail-calls the invalidating loop as iSyncDCache does _sceSDC, after InvalidDCache
+_sceIDC = 0x0010f5f0; // type:func size:0xa8  libkernl; _sceSDC with cache op 0x16 (invalidate) instead of 0x14, called by InvalidDCache
+iSyncDCache = 0x0010f5d8; // type:func size:0x14  size: symbols_debug's 0xbc runs into _sceIDC
+iDisableDmac = 0x0010f940; // type:func size:0x20  size: symbols_debug's 0x88 runs into the syscall stubs after it
