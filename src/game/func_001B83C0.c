@@ -6,11 +6,12 @@
 ================
 func_001B83C0
 
-Calls func_001B8630 and returns 0.
+Passes the object at D_008DCB70 (owner), obj and arg to func_001B8630.
+Returns 0.
 ================
 */
-s32 func_001B83C0(Unk001B8630 *arg0, Unk001B6990 *obj)
+s32 func_001B83C0(struct Obj_001B83E0 *owner, struct Obj_00131F98 *obj, s32 arg)
 {
-    func_001B8630(arg0, obj);
+    func_001B8630(owner, obj, arg);
     return 0;
 }

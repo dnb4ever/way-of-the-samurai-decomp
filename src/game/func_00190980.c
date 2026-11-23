@@ -10,7 +10,7 @@ Slot 4 of vtable D_00223DA0: returns the word at 0x20 (slot 3 stores it,
 clamped).
 ================
 */
-s32 func_00190980(Unk00223DA0 *obj)
+s32 func_00190980(Obj_00223DA0 *obj)
 {
     return obj->unk_20;
 }

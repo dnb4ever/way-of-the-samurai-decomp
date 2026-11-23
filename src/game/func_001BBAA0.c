@@ -9,7 +9,7 @@ func_001BBAA0
 Returns 0.
 ================
 */
-s32 func_001BBAA0(Unk001BB400 *obj)
+s32 func_001BBAA0(Obj_001BB400 *obj)
 {
     return 0;
 }

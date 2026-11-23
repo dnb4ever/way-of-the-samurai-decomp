@@ -9,7 +9,7 @@ func_0018A6A0
 Returns the address of the object's part at 0x50.
 ================
 */
-void *func_0018A6A0(Unk0018A6A0 *obj)
+void *func_0018A6A0(Obj_0018A6A0 *obj)
 {
     return obj->unk_050;
 }

@@ -9,7 +9,7 @@ func_001A6920
 Clears the object's counters.
 ================
 */
-void func_001A6920(Unk001A6920 *obj)
+void func_001A6920(Obj_001A6920 *obj)
 {
     obj->unk_20 = 0;
     obj->unk_00 = 0;

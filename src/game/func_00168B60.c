@@ -10,7 +10,7 @@ Returns the string an object holds in its first word; a caller compares
 it with strcmp.
 ================
 */
-char *func_00168B60(Unk00168B60 *obj)
+char *func_00168B60(Obj_00168B60 *obj)
 {
     return obj->unk_00;
 }

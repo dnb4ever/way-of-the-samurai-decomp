@@ -18,7 +18,7 @@ the other order.
 */
 ListIter *func_00174170(ListIter *it, List *list)
 {
-    it->vtable = &D_00223B80;
+    it->vtbl = &D_00223B80;
     it->node = list->head.next;
     return it;
 }

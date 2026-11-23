@@ -9,7 +9,7 @@ func_00171FA0
 Returns the object's first word.
 ================
 */
-s32 func_00171FA0(Unk00171FA0 *obj)
+s32 func_00171FA0(Obj_00171FA0 *obj)
 {
     return obj->unk_00;
 }

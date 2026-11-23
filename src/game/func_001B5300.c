@@ -10,7 +10,7 @@ Constructs the 24-byte object: the words at 0x0, 0x10 and 0x14 are -1,
 the rest 0. Returns obj.
 ================
 */
-Unk001B5300 *func_001B5300(Unk001B5300 *obj)
+Obj_001B5300 *func_001B5300(Obj_001B5300 *obj)
 {
     obj->unk_04 = 0;
     obj->unk_08 = 0;

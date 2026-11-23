@@ -18,7 +18,7 @@ go through $v0, node first.
 */
 ListIter *func_0018E350(ListIter *it, ListNode *node)
 {
-    it->vtable = &D_00223D70;
+    it->vtbl = &D_00223D70;
     it->node = node;
     return it;
 }

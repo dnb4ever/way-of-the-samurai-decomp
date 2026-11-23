@@ -9,7 +9,7 @@ func_001A7430
 Returns the word at 0x144.
 ================
 */
-s32 func_001A7430(Unk001A7250 *obj)
+s32 func_001A7430(Obj_001A7250 *obj)
 {
     return obj->unk_144;
 }

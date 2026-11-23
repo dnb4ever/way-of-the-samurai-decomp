@@ -1,27 +1,15 @@
-/* linkedlist.h -- the game's doubly linked lists and their iterators */
+/* linkedlist.h -- list template instances of the game code above 0x168000 */
 #ifndef GAME_LINKEDLIST_H
 #define GAME_LINKEDLIST_H
 
 #include "common.h"
+#include "game/listiter.h"
 
 /*
- * The game is C++, and its lists are instances of one list template. A list
- * is the sentinel node of a ring of nodes, followed by its element count.
- * Each node's element follows its two links. Iterators are polymorphic:
- * g++ 2 puts the vtable pointer after the members of the class that
- * declares the first virtual function, so it follows the node pointer.
- *
- * Each template instance has its own iterator vtable (D_00223B40 and the
- * rest below), with the same six slots. In C one set of types serves every
- * instance; the element is reached as the storage that follows the links.
+ * The list, node and iterator types are listiter.h's. A list's sentinel
+ * keeps the element count in its element slot (head.value): the list
+ * initialisers below clear it with the links.
  */
-typedef struct ListNode ListNode;
-typedef struct ListIter ListIter;
-
-struct ListNode {
-    ListNode *prev;             /* operator-- follows it */
-    ListNode *next;             /* begin() and operator++ follow it */
-};
 
 /* A node whose element needs 16-byte alignment: the element is at 0x10. */
 typedef struct ListNodeQ {
@@ -29,42 +17,18 @@ typedef struct ListNodeQ {
     u128     unk_10;
 } ListNodeQ;
 
-typedef struct List {
-    ListNode head;              /* the sentinel: end() points here */
-    s32      count;
-} List;
-
-/* A list iterator's vtable: the g++ 2 header words, then six slots. */
-typedef struct ListIterVtbl {
-    s32 unk_00;
-    s32 unk_04;
-    ListIter *(*unk_08)(ListIter *it, s32 flags);   /* deleting destructor */
-    void *(*unk_0C)(ListIter *it);                  /* the element */
-    ListIter *(*unk_10)(ListIter *it);              /* operator++ */
-    ListIter *(*unk_14)(ListIter *it);              /* operator-- */
-    ListIter *(*unk_18)(ListIter *ret, ListIter *it, s32 unused); /* it++ */
-    ListIter *(*unk_1C)(ListIter *ret, ListIter *it, s32 unused); /* it-- */
-} ListIterVtbl;
-
-struct ListIter {
-    ListNode     *node;
-    ListIterVtbl *vtable;
-};
-
-/* the iterator vtables of the template instances */
-extern ListIterVtbl D_00223670;
-extern ListIterVtbl D_00223B40;
-extern ListIterVtbl D_00223B80;
-extern ListIterVtbl D_00223C40;
-extern ListIterVtbl D_00223C80;
-extern ListIterVtbl D_00223CB0;
-extern ListIterVtbl D_00223CE0;
-extern ListIterVtbl D_00223D10;
-extern ListIterVtbl D_00223D40;
-extern ListIterVtbl D_00223D70;
-extern ListIterVtbl D_00223E10;
-extern ListIterVtbl D_00223FE0;
-extern ListIterVtbl D_00224010;
+/* iterator vtables of the instances above 0x168000 (the others are in
+   listiter.h) */
+extern const ListIterVtbl D_00223C40;
+extern const ListIterVtbl D_00223C80;
+extern const ListIterVtbl D_00223CB0;
+extern const ListIterVtbl D_00223CE0;
+extern const ListIterVtbl D_00223D10;
+extern const ListIterVtbl D_00223D40;
+extern const ListIterVtbl D_00223D70;
+extern const ListIterVtbl D_00223E10;
+extern const ListIterVtbl D_00223FE0;
+extern const ListIterVtbl D_00224010;
 
 /* functions, by address */
 void func_00168A80(List *list);

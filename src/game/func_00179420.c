@@ -6,10 +6,10 @@
 ================
 func_00179420
 
-Returns the element of the iterator's node, stored after its links.
+Returns the address of the element of the iterator's node.
 ================
 */
 void *func_00179420(ListIter *it)
 {
-    return it->node + 1;
+    return &it->node->value;
 }

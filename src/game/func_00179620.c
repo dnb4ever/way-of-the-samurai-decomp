@@ -9,7 +9,7 @@ func_00179620
 Returns the object's first word plus n.
 ================
 */
-s32 func_00179620(Unk00179620 *obj, s32 n)
+s32 func_00179620(Obj_00179620 *obj, s32 n)
 {
     return obj->unk_00 + n;
 }

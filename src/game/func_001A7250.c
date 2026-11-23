@@ -9,7 +9,7 @@ func_001A7250
 Clears the object's state.
 ================
 */
-void func_001A7250(Unk001A7250 *obj)
+void func_001A7250(Obj_001A7250 *obj)
 {
     obj->unk_014 = 0;
     obj->unk_018 = 0;

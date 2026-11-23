@@ -9,7 +9,7 @@ func_00190970
 Slot 2 of vtable D_00223DA0: returns 0.
 ================
 */
-s32 func_00190970(Unk00223DA0 *obj)
+s32 func_00190970(Obj_00223DA0 *obj)
 {
     return 0;
 }
