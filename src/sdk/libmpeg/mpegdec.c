@@ -4,7 +4,7 @@
 
 /* IPU registers */
 #define IPU_CMD     ((volatile u32 *)0x10002000)  /* volatile: hardware register */
-#define IPU_CTRL    ((u32 *)0x10002010)  /* plain: _ipuSetMPEG1's store fills the delay slot */
+#define IPU_CTRL    ((volatile u32 *)0x10002010)  /* volatile: hardware register */
 
 #define IPU_CTRL_MP1_O  23  /* MPEG-1 bit stream */
 #define IPU_CTRL_MP1_M  (1 << IPU_CTRL_MP1_O)
@@ -14,17 +14,21 @@ static int D_001FD390[16] = {
     1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 2, 0, 2, 0, 2, 3,
 };
 
+#ifdef NON_MATCHING
 /*
 ================
 _ipuSetMPEG1
 
-Switches the IPU between MPEG-1 and MPEG-2 bit streams.
+Switches the IPU between MPEG-1 and MPEG-2 bit streams. Parked: retail
+puts the volatile store in the return's delay slot, which 991111 does not
+do (a plain store does match: the compiler question, not the source).
 ================
 */
 void _ipuSetMPEG1(int mpeg1)
 {
     *IPU_CTRL = (*IPU_CTRL & ~IPU_CTRL_MP1_M) | (mpeg1 << IPU_CTRL_MP1_O);
 }
+#endif
 
 /*
 ================
