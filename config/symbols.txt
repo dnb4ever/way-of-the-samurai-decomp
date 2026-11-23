@@ -21,3 +21,5 @@ iInvalidDCache = 0x0010f718; // type:func size:0x14  libkernl; tail-calls the in
 _sceIDC = 0x0010f5f0; // type:func size:0xa8  libkernl; _sceSDC with cache op 0x16 (invalidate) instead of 0x14, called by InvalidDCache
 iSyncDCache = 0x0010f5d8; // type:func size:0x14  size: symbols_debug's 0xbc runs into _sceIDC
 iDisableDmac = 0x0010f940; // type:func size:0x20  size: symbols_debug's 0x88 runs into the syscall stubs after it
+_alalcSetDynamic = 0x0010d1c8; // type:func size:0xc  libmpeg alalc; symbols_debug places it mid-function at 0x10d208, after _alalcInit and before _alalcFree as here
+_alalcFree = 0x0010d1d8; // type:func size:0xc  libmpeg alalc; symbols_debug places it mid-function at 0x10d218
