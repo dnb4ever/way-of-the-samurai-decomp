@@ -22,6 +22,9 @@
 int Deci2Call(int func, u32 *param);
 
 int  RotateThreadReadyQueue(int priority);
+int  GetThreadId(void);
+int  WaitSema(int sema_id);
+int  SignalSema(int sema_id);
 
 int  DIntr(void);
 int  EIntr(void);

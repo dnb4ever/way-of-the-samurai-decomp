@@ -5,13 +5,10 @@
 #include <reent.h>
 #include <stddef.h>
 
+#include "sdk/eekernel.h"
+
 /* semaphore guarding the newlib allocator, created by libkernl at start-up */
 extern int D_001FE494;
-
-/* EE kernel calls */
-int GetThreadId(void);
-int WaitSema(int sema_id);
-int SignalSema(int sema_id);
 
 void __malloc_lock(struct _reent *ptr);
 void __malloc_unlock(struct _reent *ptr);
