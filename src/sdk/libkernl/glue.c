@@ -1,5 +1,7 @@
 /* glue.c -- libkernl: the newlib system call layer */
 
+#include <errno.h>
+#include <sys/stat.h>
 #include "sdk/libkernl.h"
 
 /* set once sceTtyInit has opened the console */
@@ -62,6 +64,19 @@ int read(int fd, void *buf, int nbytes)
 
 /*
 ================
+open
+
+There is no file system: every open fails with EIO.
+================
+*/
+int open(const char *path, int flags, int mode)
+{
+    errno = EIO;
+    return -1;
+}
+
+/*
+================
 close
 
 Nothing can be opened, so nothing can be closed.
@@ -106,6 +121,20 @@ int isatty(int fd)
 
 /*
 ================
+fstat
+
+Every descriptor is a character device (the console), unbuffered.
+================
+*/
+int fstat(int fd, struct stat *st)
+{
+    st->st_mode = S_IFCHR;
+    st->st_blksize = 0;
+    return 0;
+}
+
+/*
+================
 getpid
 
 There is one process.
@@ -129,4 +158,26 @@ int kill(int pid, int sig)
         Exit(sig);
     }
     return 0;
+}
+
+/*
+================
+stat
+================
+*/
+int stat(const char *path, struct stat *st)
+{
+    errno = EIO;
+    return -1;
+}
+
+/*
+================
+unlink
+================
+*/
+int unlink(const char *path)
+{
+    errno = EIO;
+    return -1;
 }
