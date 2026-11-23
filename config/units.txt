@@ -26,3 +26,8 @@ src/sdk/libkernl/tlbfunc.c                  ee-gcc2.9-991111   -O2 -G0 -ffunctio
 src/sdk/libkernl/initsys.c                  ee-gcc2.9-991111   -O2 -G0 -ffunction-sections
 src/sdk/sif/iopheap.c                       ee-gcc2.9-991111   -O2 -G0 -ffunction-sections
 src/sdk/sif/loadfile.c                      ee-gcc2.9-991111   -O2 -G0 -ffunction-sections
+src/sdk/libgraph/libgraph.c                 ee-gcc2.9-991111   -O2 -G8 -ffunction-sections
+src/sdk/mwrt/runtime.c                      ee-gcc2.9-991111   -O2 -G8 -ffunction-sections
+src/sdk/mwrt/exceptionmips.c                ee-gcc2.9-991111   -O2 -G8 -ffunction-sections
+src/sdk/mwrt/new.c                          ee-gcc2.9-991111   -O2 -G8 -ffunction-sections
+src/sdk/mwrt/nmwexception.c                 ee-gcc2.9-991111   -O2 -G8 -ffunction-sections
