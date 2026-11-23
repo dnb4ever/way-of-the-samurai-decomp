@@ -18,9 +18,12 @@ typedef struct Obj_00131F98 {
 void func_00124080(Obj_00131F98 *obj);
 s32  func_00132280(Obj_00131F98 *obj, s32 group, s32 code, s32 arg);
 
-/* the object at D_008DCB70 */
+/* the object at D_008DCB70; both functions pass owner, obj and arg on to
+   func_001B8630 and return 0 */
 typedef struct Obj_001B83E0 Obj_001B83E0;
-void func_001B83E0(Obj_001B83E0 *owner, Obj_00131F98 *obj, s32 arg);
+s32  func_001B83C0(Obj_001B83E0 *owner, Obj_00131F98 *obj, s32 arg);
+s32  func_001B83E0(Obj_001B83E0 *owner, Obj_00131F98 *obj, s32 arg);
+void func_001B8630(Obj_001B83E0 *owner, Obj_00131F98 *obj, s32 arg);
 
 /* handlers in D_00202C90 */
 s32 func_0012C270(Obj_00131F98 *obj);

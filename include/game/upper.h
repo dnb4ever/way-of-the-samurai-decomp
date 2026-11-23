@@ -150,10 +150,6 @@ typedef struct Obj_001B6990 {
     f32 unk_D1C;
 } Obj_001B6990;
 
-/* func_001B83C0 and func_001B83E0 pass on the object at D_008DCB70 and an
-   Obj_00131F98, both declared in other headers */
-struct Obj_001B83E0;
-struct Obj_00131F98;
 
 typedef struct Obj_001BB400 {
     u8  unk_000[0x924];
@@ -248,9 +244,6 @@ s32 func_001B69B0(Obj_001B6990 *obj, f32 value);
 s32 func_001B69C0(Obj_001B6990 *obj, f32 value);
 void *func_001B69D0(Obj_001B6990 *obj);
 s32 func_001B69E0(Obj_001B6990 *obj);
-s32 func_001B83C0(struct Obj_001B83E0 *owner, struct Obj_00131F98 *obj, s32 arg);
-s32 func_001B83E0(struct Obj_001B83E0 *owner, struct Obj_00131F98 *obj, s32 arg);
-void func_001B8630(struct Obj_001B83E0 *owner, struct Obj_00131F98 *obj, s32 arg);
 void func_001B9D70(void *part, s32 arg1, s32 arg2, s32 arg3);
 s32 func_001BB400(Obj_001BB400 *obj, s32 arg1, s32 arg2, s32 arg3);
 void func_001BB4B0(Obj_001BB400 *obj, s32 a, s32 b, s32 c);

@@ -10,6 +10,8 @@ typedef struct Obj_0015AF70 {
     sceVu0FVECTOR v;  /* 0x00 x, y, z, w */
 } Obj_0015AF70;
 
+Obj_0015AF70 *func_0015ABC0(Obj_0015AF70 *ret, Obj_0015AF70 *vec);
+Obj_0015AF70 *func_0015AC00(Obj_0015AF70 *vec);
 Obj_0015AF70 *func_0015AE60(Obj_0015AF70 *vec, Obj_0015AF70 *src);
 Obj_0015AF70 *func_0015AF10(Obj_0015AF70 *vec, Obj_0015AF70 *src);
 Obj_0015AF70 *func_0015AF40(Obj_0015AF70 *vec, Obj_0015AF70 *src);

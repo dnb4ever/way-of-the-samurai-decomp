@@ -28,7 +28,9 @@ struct ListNode {
     s32       value;  /* 0x08 element storage; its type depends on the list */
 };
 
-/* a list: its sentinel node, the end of every walk */
+/* a list: its sentinel node, the end of every walk. The sentinel's element
+   slot (head.value) holds the element count: the list initialisers clear it
+   with the links (func_00168A80, func_0016D650). */
 typedef struct List {
     ListNode head;    /* 0x00 */
 } List;

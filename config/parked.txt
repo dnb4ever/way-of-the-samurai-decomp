@@ -18,6 +18,8 @@ src/game/func_00136210.c                    ee-gcc2.9-991111   -O2 -G8
 src/game/func_0013A2F0.c                    ee-gcc2.96         -O2 -G8
 src/game/func_001525A0.c                    ee-gcc2.9-991111   -O2 -G8
 src/game/func_00153170.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0015ABC0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0015AC00.c                    ee-gcc2.9-991111   -O2 -G8
 src/game/func_0015AE30.c                    ee-gcc2.9-991111   -O2 -G8
 src/game/func_0015AE60.c                    ee-gcc2.9-991111   -O2 -G8
 src/game/func_0015AEE0.c                    ee-gcc2.9-991111   -O2 -G8

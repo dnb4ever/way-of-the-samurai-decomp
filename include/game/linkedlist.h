@@ -5,11 +5,7 @@
 #include "common.h"
 #include "game/listiter.h"
 
-/*
- * The list, node and iterator types are listiter.h's. A list's sentinel
- * keeps the element count in its element slot (head.value): the list
- * initialisers below clear it with the links.
- */
+/* The list, node and iterator types are listiter.h's. */
 
 /* A node whose element needs 16-byte alignment: the element is at 0x10. */
 typedef struct ListNodeQ {
