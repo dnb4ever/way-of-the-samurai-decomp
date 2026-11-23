@@ -249,6 +249,7 @@ src/sdk/libkernl/cache.c                    ee-gcc2.9-991111   -O2 -G0 -ffunctio
 src/sdk/libkernl/deci2.c                    ee-gcc2.9-991111   -O2 -G0
 src/sdk/libkernl/glue.c                     ee-gcc2.9-991111   -O2 -G0 -ffunction-sections -Iinclude/libc
 src/sdk/libkernl/initsys.c                  ee-gcc2.9-991111   -O2 -G0 -ffunction-sections
+src/sdk/libkernl/intr.c                     ee-gcc2.9-991111   -O2 -G0
 src/sdk/libkernl/tlbfunc.c                  ee-gcc2.9-991111   -O2 -G0 -ffunction-sections
 src/sdk/libkernl/tty.c                      ee-gcc2.9-991111   -O2 -G0 -ffunction-sections
 src/sdk/libmc/libmc.c                       ee-gcc2.9-991111   -O2 -G0 -ffunction-sections
@@ -258,7 +259,7 @@ src/sdk/libmpeg/mpegdec.c                   ee-gcc2.9-991111   -O2 -G8 -ffunctio
 src/sdk/libmpeg/sysbit.c                    ee-gcc2.9-991111   -O2 -G8 -ffunction-sections
 src/sdk/libpkt/gifpk.c                      ee-gcc2.9-991111   -O2 -G8
 src/sdk/libpkt/vifpk.c                      ee-gcc2.9-991111   -O2 -G8 -ffunction-sections
-src/sdk/libvu0/libvu0.c                     ee-gcc2.9-991111   -O2 -G8 -ffunction-sections
+src/sdk/libvu0/libvu0.c                     ee-gcc2.9-991111   -O2 -G8
 src/sdk/memclr.c                            ee-gcc2.9-991111   -O2 -G8
 src/sdk/mwrt/exceptionmips.c                ee-gcc2.9-991111   -O2 -G8 -ffunction-sections
 src/sdk/mwrt/new.c                          ee-gcc2.9-991111   -O2 -G8 -ffunction-sections

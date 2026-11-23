@@ -4,3 +4,4 @@
 # helper itself is listed here with its evidence.
 #
 #   name            evidence
+SYNCL           the sync.l after _iEnableIntc and friends in iEnableIntc/iDisableIntc/iEnableDmac/iDisableDmac (0x10F8E0-0x10F95C); no compiler emits sync.l, and the identical instruction follows every kernel INTC/DMAC call in this libkernl
