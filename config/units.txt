@@ -165,6 +165,10 @@ src/libc/reent/sbrkr.c                      ee-gcc2.96         -O2 -G0 -g -fno-b
 src/libc/reent/signalr.c                    ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
 src/libc/reent/writer.c                     ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
 src/libc/signal/signal.c                    ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
+src/libc/sony/malign.c                      ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
+src/libc/sony/malloc.c                      ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
+src/libc/sony/mlock.c                       ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
+src/libc/sony/realloc.c                     ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
 src/libc/stdio/fflush.c                     ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
 src/libc/stdio/findfp.c                     ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
 src/libc/stdio/fvwrite.c                    ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
