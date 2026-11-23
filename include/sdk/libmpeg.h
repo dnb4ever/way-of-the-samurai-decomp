@@ -89,6 +89,26 @@ void _alalcFree(Alalc *a);
 u8  *func_0010D1E8(MpegSys *sys, Alalc *a, int size, int align);
 int  _alalcRest(Alalc *a);
 
+/* the bit reader over the decoder's input ring buffer */
+typedef struct {
+    u64  buf;       /* 0x00 the next bits, most significant first */
+    u8  *start;     /* 0x08 where reading started */
+    u8  *pRead;     /* 0x0C next byte to load into buf */
+    u32  nbits;     /* 0x10 valid bits in buf */
+    s64  pos;       /* 0x18 bits consumed since start */
+    u8  *ringBase;  /* 0x20 the ring buffer */
+    u8  *ringEnd;   /* 0x24 */
+    int  ringSize;  /* 0x28 */
+} SysBit;
+
+void  _sysbitInit(SysBit *sb, u8 *start, u8 *ringBase, int ringSize);
+int   func_0010BBD8(SysBit *sb, int n);
+void  func_0010BBF8(SysBit *sb, int n);
+u32   _sysbitGet(SysBit *sb, int n);
+u32   _sysbitMarker(SysBit *sb);
+void  _sysbitJump(SysBit *sb, int nbytes);
+u8   *_sysbitPtr(SysBit *sb, int bitpos);
+
 /* reports a decoder error through the error callback, or prints it */
 void _Error(MpegSys *sys, char *msg);
 
