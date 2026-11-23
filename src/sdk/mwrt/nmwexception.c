@@ -4,6 +4,7 @@
    The original is C++; the functions GCC reproduces are written as the C
    their bytes are. */
 
+#include <stdlib.h>
 #include "sdk/mwrt.h"
 
 /*

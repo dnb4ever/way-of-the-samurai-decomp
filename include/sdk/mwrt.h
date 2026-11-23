@@ -11,8 +11,6 @@ int _dpfgt(double a, double b);
 int _dpflt(double a, double b);
 int _dpfeq(double a, double b);
 
-void abort(void);
-
 /* the C++ library's exception::what() overrides and allocation */
 const char *func_00100520(void *self);   /* std::exception::what */
 void       *func_00100530(u32 size);     /* operator new[] */
