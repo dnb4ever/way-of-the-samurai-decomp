@@ -24,6 +24,12 @@ int Deci2Call(int func, u32 *param);
 int  DIntr(void);
 int  EIntr(void);
 
+int  DisableDmac(int ch);
+int  RemoveDmacHandler(int ch, int id);
+
+/* DMAC channels */
+#define DMAC_SIF0           5
+
 int  _iEnableIntc(int ch);
 int  _iDisableIntc(int ch);
 int  _iEnableDmac(int ch);

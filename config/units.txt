@@ -19,3 +19,4 @@ src/sdk/libmpeg/alalc.c                     ee-gcc2.9-991111   -O2 -G8
 src/sdk/libmpeg/libmpeg.c                   ee-gcc2.9-991111   -O2 -G8 -ffunction-sections
 src/sdk/libmpeg/sysbit.c                    ee-gcc2.9-991111   -O2 -G8 -ffunction-sections
 src/sdk/libmpeg/mpegdec.c                   ee-gcc2.9-991111   -O2 -G8 -ffunction-sections
+src/sdk/sif/sifcmd.c                        ee-gcc2.9-991111   -O2 -G0 -ffunction-sections
