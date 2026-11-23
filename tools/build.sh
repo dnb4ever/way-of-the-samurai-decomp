@@ -4,6 +4,8 @@
 #   tools/build.sh                 full build: every unit in config/units.txt
 #   tools/build.sh src/x/y.c ...   compile and check only these units (inner loop)
 #   tools/build.sh -n [units]      also compile NON_MATCHING bodies and report them
+#                                  (with the units of config/parked.txt, whose
+#                                  functions are all parked)
 #
 # Runs on Linux or WSL. The old EE compilers are 32-bit programs that cannot
 # stat files on a Windows drive mounted under /mnt, so when the checkout lives
@@ -50,17 +52,21 @@ OBJ=$WORK/build/obj
 rm -rf "$OBJ" "$BUILD"
 mkdir -p "$OBJ" "$BUILD"
 
-declare -a UNITS
+declare -a UNITS PARKED
+units_of() { grep -v '^\s*\(#\|$\)' "$1" 2>/dev/null; }
 if [ $# -gt 0 ]; then
     for u in "$@"; do
         line=$(awk -v u="$u" '$1==u' "$REPO/config/units.txt")
-        [ -n "$line" ] || { echo "$u is not in config/units.txt"; exit 2; }
-        UNITS+=("$line")
+        pline=$(awk -v u="$u" '$1==u' "$REPO/config/parked.txt" 2>/dev/null)
+        if [ -n "$line" ]; then UNITS+=("$line")
+        elif [ -n "$pline" ]; then PARKED+=("$pline")
+        else echo "$u is not in config/units.txt or config/parked.txt"; exit 2; fi
     done
 else
-    while IFS= read -r line; do UNITS+=("$line"); done < <(grep -v '^\s*\(#\|$\)' "$REPO/config/units.txt")
+    while IFS= read -r line; do UNITS+=("$line"); done < <(units_of "$REPO/config/units.txt")
+    while IFS= read -r line; do PARKED+=("$line"); done < <(units_of "$REPO/config/parked.txt")
 fi
-[ ${#UNITS[@]} -gt 0 ] || { echo "no units to build"; exit 2; }
+[ ${#UNITS[@]} -gt 0 ] || [ $NONMATCHING -eq 1 ] || { echo "no units to build"; exit 2; }
 
 compile() {  # unit compiler flags... -> object path on stdout
     local unit=$1 comp=$2; shift 2
@@ -85,13 +91,18 @@ done
 MAPS=(-s "$REPO/config/symbols.txt" -s "$REPO/config/symbols_debug.txt")
 
 # ---- per-function check and the byte gate ---------------------------------------
-"$HOSTBIN/fncheck" -H "$SHA1" -t "$RETAIL" "${MAPS[@]}" "${OBJS[@]}" > "$BUILD/fncheck.txt"
-GATE=$?
-grep -v '^MATCH ' "$BUILD/fncheck.txt"
+GATE=0
+if [ ${#OBJS[@]} -gt 0 ]; then
+    "$HOSTBIN/fncheck" -H "$SHA1" -t "$RETAIL" "${MAPS[@]}" "${OBJS[@]}" > "$BUILD/fncheck.txt"
+    GATE=$?
+    grep -v '^MATCH ' "$BUILD/fncheck.txt"
+else
+    : > "$BUILD/fncheck.txt"
+fi
 
 # ---- rules ------------------------------------------------------------------------
 SOURCES=()
-for line in "${UNITS[@]}"; do read -r unit _ <<<"$line"; SOURCES+=("$REPO/$unit"); done
+for line in "${UNITS[@]}" "${PARKED[@]}"; do read -r unit _ <<<"$line"; SOURCES+=("$REPO/$unit"); done
 HEADERS=$(find "$REPO/include" -name '*.h' -not -path '*/include/gcc/*')
 "$HOSTBIN/rules" -m "$BUILD/fncheck.txt" -j "$BUILD/report.json" -T "$REPO/config/totals.txt" \
     "${SOURCES[@]}" $HEADERS > "$BUILD/rules.txt"
@@ -102,7 +113,7 @@ if [ $NONMATCHING -eq 1 ]; then
     OBJ=$WORK/build/obj-nonmatching
     rm -rf "$OBJ"; mkdir -p "$OBJ"
     NM=()
-    for line in "${UNITS[@]}"; do
+    for line in "${UNITS[@]}" "${PARKED[@]}"; do
         read -r unit comp flags <<<"$line"
         o=$(EXTRA_CFLAGS=-DNON_MATCHING compile "$unit" "$comp" $flags) && NM+=("$o")
     done
