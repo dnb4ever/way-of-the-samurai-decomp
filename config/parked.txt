@@ -1,0 +1,105 @@
+# Units whose functions are all parked in #ifdef NON_MATCHING: same format as
+# units.txt. They stay out of the gated build; `tools/build.sh -n` compiles
+# them with -DNON_MATCHING and lists how far each body is from retail, and the
+# rule checker reads them on every build.
+#
+#   unit                                    compiler           flags
+# libgcc soft-float objects whose retail code is the Cygnus r5900 fp-bit.c,
+# which is not public: single precision rounds toward zero and has no
+# infinities or NaNs (__pack_f, __unpack_f); double precision rounds toward
+# zero in dpmul/dpdiv/__pack_d, and __unpack_d turns infinity into the
+# largest finite value. Closest public source: gcc fp-bit.c of 2000-09-08.
+src/game/ezmpeg/videoDecDelete.c            ee-gcc2.9-991111   -O2 -G8
+src/game/func_0011C7B0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0011DEB0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0012C270.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0012C670.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0012D420.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001335B0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00134970.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001350A0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00136170.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00136210.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0013A2F0.c                    ee-gcc2.96         -O2 -G8
+src/game/func_001525A0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00153170.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0015ABC0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0015AC00.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0015AE30.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0015AE60.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0015AEE0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0015AF10.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0015AF40.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0015B4C0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0015E2C0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0015F260.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0015F3B0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0015F7B0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0015F7E0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0015FA40.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0015FA50.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0015FA80.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0015FAA0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00165170.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00165240.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00165B00.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00166440.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00166A30.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00174150.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00174170.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00176080.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001760A0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001760D0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00179400.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00179480.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0017A860.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0017A8E0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0017AF50.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0017AF80.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0017B0E0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0017B110.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0017D2A0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0017D2D0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0017F500.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0017F630.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001803C0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00180510.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00181D40.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00181D80.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00181DD0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00181E00.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001822A0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001822C0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001822E0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00182F10.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00183030.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001858A0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00186040.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00186060.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0018E1F0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0018E220.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0018E290.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0018E320.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0018E350.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0018E3C0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00190950.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0019BB10.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0019BB40.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0019BC50.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0019CFE0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001B9470.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001B9490.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001B9B10.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001BD2E0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001EF350.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001EF3D0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001F02C0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001F0880.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001F09B0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001F2CC0.c                    ee-gcc2.9-991111   -O2 -G8
+src/libgcc/fp-bit.c:_div_df                 ee-gcc2.96         -O2 -G0 -DFINE_GRAINED_LIBRARIES -DFLOAT_BIT_ORDER_MISMATCH -DUS_SOFTWARE_GOFAST -DL_div_df
+src/libgcc/fp-bit.c:_mul_df                 ee-gcc2.96         -O2 -G0 -DFINE_GRAINED_LIBRARIES -DFLOAT_BIT_ORDER_MISMATCH -DUS_SOFTWARE_GOFAST -DL_mul_df
+src/libgcc/fp-bit.c:_pack_df                ee-gcc2.96         -O2 -G0 -DFINE_GRAINED_LIBRARIES -DFLOAT_BIT_ORDER_MISMATCH -DUS_SOFTWARE_GOFAST -DL_pack_df
+src/libgcc/fp-bit.c:_pack_sf                ee-gcc2.96         -O2 -G0 -DFINE_GRAINED_LIBRARIES -DFLOAT_BIT_ORDER_MISMATCH -DUS_SOFTWARE_GOFAST -DFLOAT -DNO_NANS -DNO_DENORMALS -DL_pack_sf
+src/libgcc/fp-bit.c:_unpack_df              ee-gcc2.96         -O2 -G0 -DFINE_GRAINED_LIBRARIES -DFLOAT_BIT_ORDER_MISMATCH -DUS_SOFTWARE_GOFAST -DL_unpack_df
+src/libgcc/fp-bit.c:_unpack_sf              ee-gcc2.96         -O2 -G0 -DFINE_GRAINED_LIBRARIES -DFLOAT_BIT_ORDER_MISMATCH -DUS_SOFTWARE_GOFAST -DFLOAT -DNO_NANS -DNO_DENORMALS -DL_unpack_sf

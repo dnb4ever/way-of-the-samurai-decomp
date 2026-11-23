@@ -1,0 +1,66 @@
+// Project names: functions and data named from evidence in this binary
+// (strings, call sites, structure) or adopted from surviving source.
+// Library names recovered from other games' symbols are in symbols_debug.txt.
+//
+//   name = 0xADDRESS; // type:func size:0xN  evidence
+sceVif1PkInit = 0x00105140; // type:func size:0x10  libpkt vif1 object; bytes equal sceGifPkInit (symbols_debug repeats that name here)
+sceVif1PkReset = 0x00105150; // type:func size:0x10  libpkt vif1 object; bytes equal sceGifPkReset
+sceVif1PkTerminate = 0x00105160; // type:func size:0x58  libpkt vif1 object; bytes equal sceGifPkTerminate; called by sceVif1PkCnt
+sceVif1PkSize = 0x001051b8; // type:func size:0x14  libpkt vif1 object; bytes equal sceGifPkSize
+sceVif1PkRef = 0x00105228; // type:func size:0x98  libpkt vif1 object; bytes equal sceGifPkRef; called by sceVif1PkRefLoadImage
+sceVif1PkEnd = 0x001052c0; // type:func size:0x58  libpkt vif1 object; DMA tag ID end (0x70000000), symbols_debug guesses sceVif1PkCnt
+sceVif1PkReserve = 0x00105548; // type:func size:0x14  libpkt vif1 object; bytes equal sceGifPkReserve
+sceVif1PkAddGsData = 0x00105650; // type:func size:0x28  libpkt vif1 object; bytes equal sceGifPkAddGsData
+sceVif1PkOpenDirectHLCode = 0x001058e0; // type:func size:0x58  libpkt vif1 object; VIF code DIRECTHL (0x51), called by sceVif1PkRefLoadImage
+sceVif1PkCloseDirectHLCode = 0x00105938; // type:func size:0x2c  libpkt vif1 object; closes sceVif1PkOpenDirectHLCode in sceVif1PkRefLoadImage
+close = 0x0010f348; // type:func size:0x8  libkernl glue; called by newlib _close_r
+lseek = 0x0010f358; // type:func size:0x8  libkernl glue; called by newlib _lseek_r
+isatty = 0x0010f410; // type:func size:0x8  libkernl glue; called by newlib __smakebuf
+getpid = 0x0010f430; // type:func size:0x8  libkernl glue; tail-called by newlib _getpid_r
+iInvalidDCache = 0x0010f718; // type:func size:0x14  libkernl; tail-calls the invalidating loop as iSyncDCache does _sceSDC, after InvalidDCache
+_sceIDC = 0x0010f5f0; // type:func size:0xa8  libkernl; _sceSDC with cache op 0x16 (invalidate) instead of 0x14, called by InvalidDCache
+iSyncDCache = 0x0010f5d8; // type:func size:0x14  size: symbols_debug's 0xbc runs into _sceIDC
+iDisableDmac = 0x0010f940; // type:func size:0x20  size: symbols_debug's 0x88 runs into the syscall stubs after it
+_alalcSetDynamic = 0x0010d1c8; // type:func size:0xc  libmpeg alalc; symbols_debug places it mid-function at 0x10d208, after _alalcInit and before _alalcFree as here
+_alalcFree = 0x0010d1d8; // type:func size:0xc  libmpeg alalc; symbols_debug places it mid-function at 0x10d218
+sceSifRemoveCmdHandler = 0x00111208; // type:func size:0x28  size: symbols_debug's 0x15c runs into the next function
+sceSifExitRpc = 0x00111760; // type:func size:0x24  size: symbols_debug's 0x278 runs into the packet functions after it
+_InitSys = 0x001178c0; // type:func size:0x3c  size: symbols_debug's 0x110 runs past the function
+sceSifLoadStartModuleBuffer = 0x00116670; // type:func size:0x1c  passes the caller's result pointer to the loader sceSifLoadModuleBuffer calls with its own; symbols_debug places it at 0x116688
+defMain = 0x001EB950; // type:func size:0x18  ezmpeg sample, C++: defMain__FPv in symbols_debug.txt
+videoDecDelete = 0x001EE1A0; // type:func size:0x34  ezmpeg sample, C++: videoDecDelete__FP8VideoDec in symbols_debug.txt
+videoDecSetStream = 0x001EE200; // type:func size:0x20  ezmpeg sample, C++: videoDecSetStream__FP8VideoDeciiPFP7sceMpegP13sceMpegCbDataPv_iPv in symbols_debug.txt
+
+// newlib libc and libm (src/libc, src/libm): functions placed by fncheck -F
+// from the adopted newlib sources, and the data they reference.
+acos = 0x001C9008; // type:func size:0x14  newlib libm/math/w_acos.c
+atan2 = 0x001C9020; // type:func size:0x14  newlib libm/math/w_atan2.c
+sqrt = 0x001C9038; // type:func size:0x14  newlib libm/math/w_sqrt.c
+acosf = 0x001C9050; // type:func size:0x14  newlib libm/math/wf_acos.c
+asinf = 0x001C9068; // type:func size:0x14  newlib libm/math/wf_asin.c
+atan2f = 0x001C9080; // type:func size:0x14  newlib libm/math/wf_atan2.c
+sqrtf = 0x001C9098; // type:func size:0x14  newlib libm/math/wf_sqrt.c
+__errno = 0x001CF728; // type:func size:0xc  newlib libc/errno/errno.c
+_cleanup_r = 0x001CFA20; // type:func size:0x1c  newlib libc/stdio/findfp.c
+index = 0x001D0430; // type:func size:0x14  newlib libc/string/index.c
+_localeconv_r = 0x001D04D8; // type:func size:0xc  newlib libc/locale/locale.c
+_malloc_r = 0x001D0C10; // type:func size:0x728  newlib libc/stdlib/mallocr.c
+_getpid_r = 0x001D33A0; // type:func size:0x14  newlib libc/reent/signalr.c
+_vfprintf_r = 0x001D5860; // type:func size:0x1670  newlib libc/stdio/vfprintf.c
+_impure_ptr = 0x00210F40; // type:data size:0x4  newlib libc/reent/impure.c; read by printf, sprintf
+errno = 0x00C290C8; // type:data size:0x4  set by the newlib reent wrappers (_close_r)
+_exit = 0x001000B8; // type:func  called as _exit(1) by newlib abort.c (abort at 0x1CE150)
+__ieee754_atan2 = 0x001C64E0; // type:func size:0x33c  newlib libm/math/e_atan2.c
+atan = 0x001C8428; // type:func size:0x4c8  newlib libm/math/s_atan.c
+_free_r = 0x001CFAF0; // type:func size:0x2f4  newlib libc/stdlib/mallocr.c (DEFINE_FREE); called by __swsetup
+__malloc_lock = 0x001D1760; // type:func size:0x7c  called by newlib _malloc_r (MALLOC_LOCK)
+__malloc_av_ = 0x00210F50; // type:data size:0x408  newlib libc/stdlib/mallocr.c (mallocr.o .data)
+__mb_cur_max = 0x00210F48; // type:data size:0x4  newlib libc/locale/locale.c; read by _vfprintf_r
+__infinity = 0x0021CD50; // type:data size:0x8  newlib libm/common/s_infconst.c; read by _strtod_r
+__malloc_trim_threshold = 0x00211358; // type:data size:0x8  newlib mallocr.o .data, after __malloc_av_
+__malloc_top_pad = 0x00211360; // type:data size:0x8  newlib mallocr.o .data
+__malloc_sbrk_base = 0x00211368; // type:data size:0x4  newlib mallocr.o .data
+__malloc_max_sbrked_mem = 0x00211370; // type:data size:0x8  newlib mallocr.o .data
+__malloc_max_total_mem = 0x00211378; // type:data size:0x8  newlib mallocr.o .data
+__malloc_current_mallinfo = 0x00211380; // type:data size:0x28  newlib mallocr.o .data
+__thenan_df = 0x0021E058; // type:data size:0x18  libgcc fp-bit.c (_thenan_df object); read by _fpadd_parts
