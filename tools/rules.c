@@ -1,7 +1,7 @@
 /*
  * rules.c -- the decomp-code-rules checker for this project.
  *
- * Usage: rules [-m fncheck.txt [-j report.json -T totals.txt]] [-u prefix] [-a helper] [-q] file.c file.h ...
+ * Usage: rules [-m fncheck.txt [-j report.json -T totals.txt]] [-u prefix] [-a helper] [-O objects.txt] [-q] file.c file.h ...
  *
  * Reports one line per finding:
  *     file:line: [match] R4 FunctionName: offset cast on a byte pointer
@@ -17,6 +17,12 @@
  * every [match] rule. With -j, those numbers are also written as an objdiff
  * style progress report; -T names the file holding the image's totals
  * ("total_code N" and "total_functions N" lines).
+ *
+ * With -O <objects.txt> ("object source" per line, written by build.sh), a
+ * matched function whose definition the parser cannot see (newlib renames
+ * functions through macros: Balloc is _Balloc, mALLOc is _malloc_r) is
+ * credited to the source its object was built from, when that source is
+ * adopted upstream source (-u) with no [match] finding.
  *
  * With -a <name> (repeatable), a macro or inline function of that name is an
  * original inline-assembly helper (R18's exception, e.g. the EE's "sync.l"
@@ -45,6 +51,7 @@ typedef struct {
     char *code;      /* comments and literals blanked, newlines kept */
     int   isHeader;
     int   upstream;  /* verbatim upstream source (-u) */
+    int   matchFindings;  /* [match] findings anywhere in the file */
     int   numLines;
     char **lineCode; /* per-line views into code */
     char **lineText; /* per-line views into text */
@@ -415,6 +422,7 @@ static void Finding(int fi, int line, int isMatch, const char *rule, const char 
     snprintf(msg, sizeof(msg), fmt, arg);
     if (isMatch) {
         g_matchCount++;
+        g_files[fi].matchFindings++;
         if (fn)
             fn->matchFindings++;
     } else {
@@ -828,7 +836,7 @@ static void CheckTypes(void)
 
 int main(int argc, char **argv)
 {
-    const char *matchesPath = NULL, *jsonPath = NULL, *totalsPath = NULL;
+    const char *matchesPath = NULL, *jsonPath = NULL, *totalsPath = NULL, *objectsPath = NULL;
     int         i, line;
 
     for (i = 1; i < argc; i++) {
@@ -840,6 +848,8 @@ int main(int argc, char **argv)
             totalsPath = argv[++i];
         else if (strcmp(argv[i], "-q") == 0)
             g_quiet = 1;
+        else if (strcmp(argv[i], "-O") == 0 && i + 1 < argc)
+            objectsPath = argv[++i];
         else if (strcmp(argv[i], "-a") == 0 && i + 1 < argc && g_numAsmHelpers < 64)
             g_asmHelpers[g_numAsmHelpers++] = argv[++i];
         else if (strcmp(argv[i], "-u") == 0 && i + 1 < argc && g_numUpstream < 64)
@@ -888,6 +898,35 @@ int main(int argc, char **argv)
                     if (g_funcs[k].matchFindings)
                         pending = 1;
                 }
+            }
+            if (!found && objectsPath != NULL) {
+                /* credit verbatim upstream source through the object it built */
+                const char *open = strrchr(buf, '(');
+                char        obj[1024] = "";
+                FILE       *om = fopen(objectsPath, "r");
+                char        line[2048];
+
+                if (open != NULL) {
+                    size_t n = strcspn(open + 1, ")");
+                    if (n < sizeof(obj)) {
+                        memcpy(obj, open + 1, n);
+                        obj[n] = '\0';
+                    }
+                }
+                while (om != NULL && obj[0] && fgets(line, sizeof(line), om)) {
+                    char o[1024], src[1024];
+                    if (sscanf(line, "%1023s %1023s", o, src) == 2 && strcmp(o, obj) == 0) {
+                        int fi;
+                        for (fi = 0; fi < g_numFiles; fi++) {
+                            if (strcmp(g_files[fi].path, src) == 0 && g_files[fi].upstream &&
+                                g_files[fi].matchFindings == 0)
+                                found = 1;
+                        }
+                        break;
+                    }
+                }
+                if (om != NULL)
+                    fclose(om);
             }
             if (!found || pending) {
                 printf("MATCH-PENDING %08X %s%s\n", addr, name, found ? "" : " (source not found)");

@@ -398,6 +398,8 @@ static void Report(const char *status, const Object *o, const char *name, uint32
     printf("%-8s %08X %5u %s", status, addr, size, name);
     if (why && *why)
         printf("  (%s; %s)", why, o->path);
+    else
+        printf("  (%s)", o->path);
     printf("\n");
 }
 

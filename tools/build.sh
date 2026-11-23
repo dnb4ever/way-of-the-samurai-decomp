@@ -88,6 +88,7 @@ for line in "${UNITS[@]}"; do
     read -r unit comp flags <<<"$line"
     o=$(compile "$unit" "$comp" $flags) || { echo "COMPILE FAILED: $unit" >&2; FAILED=1; continue; }
     OBJS+=("$o")
+    printf '%s %s\n' "$o" "$REPO/${unit%%:*}" >> "$BUILD/objects.txt"
 done
 [ $FAILED -eq 0 ] || { echo "build failed"; exit 1; }
 
@@ -114,7 +115,7 @@ HEADERS=$(find "$REPO/include" -name '*.h' -not -path '*/include/gcc/*')
 UPSTREAM=()
 while IFS= read -r prefix; do UPSTREAM+=(-u "$prefix"); done < <(units_of "$REPO/config/upstream.txt")
 while read -r helper _; do UPSTREAM+=(-a "$helper"); done < <(units_of "$REPO/config/asm_helpers.txt")
-"$HOSTBIN/rules" -m "$BUILD/fncheck.txt" -j "$BUILD/report.json" -T "$REPO/config/totals.txt" "${UPSTREAM[@]}" \
+"$HOSTBIN/rules" -m "$BUILD/fncheck.txt" -j "$BUILD/report.json" -T "$REPO/config/totals.txt" "${UPSTREAM[@]}" -O "$BUILD/objects.txt" \
     "${SOURCES[@]}" $HEADERS > "$BUILD/rules.txt"
 grep -E '^(MATCH-PENDING|matched under|bytes matched|[0-9]+ \[match\])' "$BUILD/rules.txt" | tee "$BUILD/summary.txt"
 
