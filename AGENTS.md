@@ -50,8 +50,11 @@ comes from several compilers. Each unit records the compiler that reproduces it 
 
 **Known gap:** game functions that save callee-saved registers use a prologue no published EE compiler emits
 (`sq` for `$s` registers, `sd` for `$ra`, 16-byte slots, saved highest slot first). Neither 2.9-991111, 2.96,
-the SN Systems 2.95 builds nor MWCC PS2 2.4 produces it. Those functions cannot be verified until the right
-compiler build is found; they stay parked. Never patch or wrap a compiler to imitate retail output: a
+the SN Systems 2.95 builds nor MWCC PS2 2.4 produces it. Other retail traits no public build reproduces at any
+optimisation level: every game function starts on a 16-byte boundary; globals are read through an `$at`
+address macro (`lui $at` / `lw x, %lo($at)`) where the public builds use a result register; some virtual
+thunks tail-call through `jr $t9`; some short functions allocate registers differently. Those functions
+cannot be verified until the right compiler build is found; they stay parked. Never patch or wrap a compiler to imitate retail output: a
 modified compiler that reproduces the bytes proves nothing about the source.
 
 `$gp` is `0x0022C0F0` (from `.reginfo`). Small data is reached through it in `-G8` units.

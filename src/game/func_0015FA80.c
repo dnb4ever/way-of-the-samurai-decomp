@@ -12,7 +12,9 @@ Slot 3 (prev) of the iterator vtable D_002239E0.
 Parked: retail keeps the loaded node in $v1 for both loads; the stock
 compilers at -O2 load the first into $a1. Only merging the two values
 into one local reproduces it, which is not source.
-(ee-gcc2.96 and 2.9-991111 at -Os allocate like retail.)
+Both stock compilers reproduce it at -Os, but no other function in these
+objects tells -Os from -O2, and their constructors and slot-6/7 thunks
+match under neither, so -Os is not taken as the objects' flag.
 ================
 */
 #ifdef NON_MATCHING

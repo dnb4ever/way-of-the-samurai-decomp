@@ -213,6 +213,7 @@ __mm__Q33std118__list_deleter<Q310yagaevents13CEventManager10EventEntry,Q23std52
 __mm__Q33std118__list_deleter<Q310yagaevents13CEventManager10EventEntry,Q23std52allocator<Q310yagaevents13CEventManager10EventEntry>>19generic_iterator<0>Fv = 0x00190950; // type:func size:0x14 from:unique prototypes:2
 pad256_tex_stripe16551208_end = 0x0019411c; // type:func size:0x10 from:unique prototypes:1
 Read__24CFileIO_Ex<10CFileIO_CD>FPci = 0x00199c10; // type:func size:0x10 from:unique prototypes:60
+cvFsIsExistDevice = 0x00199c50; // type:func size:0x20 from:unique prototypes:402 rejected: callers pass IOP module paths to (obj, path); a 0x20-byte shape inside game C++ code
 __dt__27CIPUYSDRVOnMemoryReadModuleFv = 0x00199ea0; // type:func size:0x70 from:unique prototypes:3
 IntroductionAction__17CRoyalRumbleFrameFv = 0x00199f44; // type:func size:0x10 from:link-order prototypes:54
 __dt__7CHeadAiFv = 0x0019b1d0; // type:func size:0x44 from:link-order prototypes:122
