@@ -49,9 +49,19 @@ typedef struct {
     int          unk_EC;
     s64          ptm;               /* 0xF0 sceSetPtm */
     int          ptmSet;            /* 0xF8 */
-    u8           unk_FC[0xBC];
+    u8           unk_FC[0x78];
+    int          pictureStructure;  /* 0x174 MPEG_FRAME_PICTURE, ... */
+    int          topFieldFirst;     /* 0x178 */
+    u8           unk_17C[0x3C];
     MpegRefSlot  refSlot[3];        /* 0x1B8 */
+    u8           unk_1E8[0x630];
+    int          unk_818;           /* 0x818 set per IPU command sent */
 } MpegSys;
+
+/* picture_structure values */
+#define MPEG_TOP_FIELD      1
+#define MPEG_BOTTOM_FIELD   2
+#define MPEG_FRAME_PICTURE  3
 
 typedef struct {
     int      width;         /* 0x00 */
@@ -108,6 +118,10 @@ u32   _sysbitGet(SysBit *sb, int n);
 u32   _sysbitMarker(SysBit *sb);
 void  _sysbitJump(SysBit *sb, int nbytes);
 u8   *_sysbitPtr(SysBit *sb, int bitpos);
+
+void _ipuSetMPEG1(int mpeg1);
+void _dualPrimeVector(MpegSys *sys, int dmv[2][2], int *dmvector, int mvx, int mvy);
+void _sendIpuCommand(MpegSys *sys, u32 command);
 
 /* reports a decoder error through the error callback, or prints it */
 void _Error(MpegSys *sys, char *msg);
