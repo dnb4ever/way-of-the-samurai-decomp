@@ -2,11 +2,157 @@
 #
 #   unit                                    compiler           flags
 #
+# unit is a source path, or path:object when one source builds several
+# objects with different -D options (newlib's mallocr.c, libgcc's fp-bit.c).
 # compiler is a directory under tools/get_compilers.sh's destination. The
 # compiler and flags of each unit are the ones that reproduce its functions;
-# see AGENTS.md, "Toolchain".
+# see AGENTS.md, "Toolchain". Each compiler's own <stdarg.h> etc. are looked
+# up in include/gcc/<compiler>/ before the shared include/gcc/.
 
-src/sdk/memclr.c                            ee-gcc2.9-991111   -O2 -G8
+src/game/ezmpeg/defMain.c                   ee-gcc2.9-991111   -O2 -G8
+src/game/ezmpeg/func_001EB3D0.c             ee-gcc2.9-991111   -O2 -G8
+src/game/ezmpeg/func_001EB940.c             ee-gcc2.9-991111   -O2 -G8
+src/game/ezmpeg/func_001EC7D0.c             ee-gcc2.9-991111   -O2 -G8
+src/game/ezmpeg/func_001EDD10.c             ee-gcc2.9-991111   -O2 -G8
+src/game/ezmpeg/func_001EE180.c             ee-gcc2.9-991111   -O2 -G8
+src/game/ezmpeg/func_001EE4C0.c             ee-gcc2.9-991111   -O2 -G8
+src/game/ezmpeg/func_001EE4D0.c             ee-gcc2.9-991111   -O2 -G8
+src/game/ezmpeg/videoDecSetStream.c         ee-gcc2.9-991111   -O2 -G8
+src/game/func_0011C7A0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0011DA50.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0011DA60.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0011DC40.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0011E3A0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0011ED50.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0011F000.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0011F070.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0011F080.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0011F390.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0011FDB0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001201D0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0012C650.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0012C810.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0012D360.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0012F7C0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00131EC0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001338C0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00133D00.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00134960.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0013E1C0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0013FC50.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00144090.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001440A0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00147430.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00147A10.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001485B0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001487E0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00149D30.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00149E00.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0014A9F0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001500F0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00150100.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00150110.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001508F0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00150900.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00150990.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001509A0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00150AD0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00154DE0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00154E00.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00155640.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00155730.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00156690.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001566A0.c                    ee-gcc2.96         -O2 -G8
+src/game/func_00159FC0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0015AF70.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0015E6C0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0015EF50.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0015F790.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0015FE30.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0015FE40.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00161BE0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00163CC0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00165190.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00165230.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00168A80.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00168B60.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0016D650.c                    ee-gcc2.96         -O2 -G8
+src/game/func_00171FA0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00174190.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001756F0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00175740.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00175760.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00175B60.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00175B70.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00175B90.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00179420.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00179620.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0017A880.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0017AF40.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0017D2C0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001811E0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00182EC0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00185A60.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001886A0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00189130.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00189140.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0018A6A0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0018A6B0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0018E210.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0018E340.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0018E3E0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0018E3F0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0018E400.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0018E410.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0018E420.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0018E430.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0018E440.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0018F0B0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00190970.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00190980.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00190A90.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00190C10.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00191340.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00199C50.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00199F20.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_00199F30.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0019A210.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0019BB30.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0019CFC0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_0019CFD0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001A6920.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001A7250.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001A73D0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001A73E0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001A7430.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001A7440.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001A7450.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001A74E0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001B5300.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001B5A50.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001B5C80.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001B5ED0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001B6140.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001B6990.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001B69A0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001B69B0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001B69C0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001B69D0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001B69E0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001B7EE0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001B83C0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001B83E0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001B94B0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001BB400.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001BB4B0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001BBA90.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001BBAA0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001E4300.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001EB3C0.c                    ee-gcc2.96         -O2 -G8
+src/game/func_001EF370.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001F0DA0.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001F7130.c                    ee-gcc2.9-991111   -O2 -G8
+src/game/func_001F8E70.c                    ee-gcc2.9-991111   -O2 -G8
 
 src/libc/ctype/toupper.c                    ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
 src/libc/errno/errno.c                      ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
@@ -69,3 +215,30 @@ src/libm/math/wf_acos.c                     ee-gcc2.96         -O2 -G0 -g -fno-b
 src/libm/math/wf_asin.c                     ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -D_IEEE_LIBM -D_FLT_LARGEST_EXPONENT_IS_NORMAL -D_FLT_NO_DENORMALS -Iinclude/libc -Isrc/libm/common
 src/libm/math/wf_atan2.c                    ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -D_IEEE_LIBM -D_FLT_LARGEST_EXPONENT_IS_NORMAL -D_FLT_NO_DENORMALS -Iinclude/libc -Isrc/libm/common
 src/libm/math/wf_sqrt.c                     ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -D_IEEE_LIBM -D_FLT_LARGEST_EXPONENT_IS_NORMAL -D_FLT_NO_DENORMALS -Iinclude/libc -Isrc/libm/common
+
+src/sdk/libdma/libdma.c                     ee-gcc2.9-991111   -O2 -G0 -ffunction-sections
+src/sdk/libgraph/libgraph.c                 ee-gcc2.9-991111   -O2 -G8 -ffunction-sections
+src/sdk/libkernl/alarm.c                    ee-gcc2.9-991111   -O2 -G0 -ffunction-sections
+src/sdk/libkernl/cache.c                    ee-gcc2.9-991111   -O2 -G0 -ffunction-sections
+src/sdk/libkernl/deci2.c                    ee-gcc2.9-991111   -O2 -G0
+src/sdk/libkernl/glue.c                     ee-gcc2.9-991111   -O2 -G0 -ffunction-sections
+src/sdk/libkernl/initsys.c                  ee-gcc2.9-991111   -O2 -G0 -ffunction-sections
+src/sdk/libkernl/tlbfunc.c                  ee-gcc2.9-991111   -O2 -G0 -ffunction-sections
+src/sdk/libkernl/tty.c                      ee-gcc2.9-991111   -O2 -G0 -ffunction-sections
+src/sdk/libmc/libmc.c                       ee-gcc2.9-991111   -O2 -G0 -ffunction-sections
+src/sdk/libmpeg/alalc.c                     ee-gcc2.9-991111   -O2 -G8
+src/sdk/libmpeg/libmpeg.c                   ee-gcc2.9-991111   -O2 -G8 -ffunction-sections
+src/sdk/libmpeg/mpegdec.c                   ee-gcc2.9-991111   -O2 -G8 -ffunction-sections
+src/sdk/libmpeg/sysbit.c                    ee-gcc2.9-991111   -O2 -G8 -ffunction-sections
+src/sdk/libpkt/gifpk.c                      ee-gcc2.9-991111   -O2 -G8
+src/sdk/libpkt/vifpk.c                      ee-gcc2.9-991111   -O2 -G8 -ffunction-sections
+src/sdk/libvu0/libvu0.c                     ee-gcc2.9-991111   -O2 -G8 -ffunction-sections
+src/sdk/memclr.c                            ee-gcc2.9-991111   -O2 -G8
+src/sdk/mwrt/exceptionmips.c                ee-gcc2.9-991111   -O2 -G8 -ffunction-sections
+src/sdk/mwrt/new.c                          ee-gcc2.9-991111   -O2 -G8 -ffunction-sections
+src/sdk/mwrt/nmwexception.c                 ee-gcc2.9-991111   -O2 -G8 -ffunction-sections
+src/sdk/mwrt/runtime.c                      ee-gcc2.9-991111   -O2 -G8 -ffunction-sections
+src/sdk/sif/iopheap.c                       ee-gcc2.9-991111   -O2 -G0 -ffunction-sections
+src/sdk/sif/loadfile.c                      ee-gcc2.9-991111   -O2 -G0 -ffunction-sections
+src/sdk/sif/sifcmd.c                        ee-gcc2.9-991111   -O2 -G0 -ffunction-sections
+src/sdk/sif/sifrpc.c                        ee-gcc2.9-991111   -O2 -G0 -ffunction-sections
