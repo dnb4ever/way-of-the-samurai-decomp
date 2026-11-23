@@ -2,6 +2,8 @@
 
 #include "game/listiter.h"
 
+#ifdef NON_MATCHING
+
 /*
 ================
 func_00165B00
@@ -14,7 +16,6 @@ and stores through $a0; the stock compilers load the vtable address into
 $v0 and copy $a0 to $v0 after the first store.
 ================
 */
-#ifdef NON_MATCHING
 ListIter *func_00165B00(ListIter *it, List *list)
 {
     it->vtbl = &D_00223B40;

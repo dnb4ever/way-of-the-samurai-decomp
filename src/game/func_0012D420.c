@@ -3,6 +3,8 @@
 #include "game/obj_00131f98.h"
 #include "game/obj_008dcb00.h"
 
+#ifdef NON_MATCHING
+
 /*
 ================
 func_0012D420
@@ -16,7 +18,6 @@ Retail also reads D_008DCB00.unk_70 with an $at address macro where the
 stock compilers split the address into $v0.
 ================
 */
-#ifdef NON_MATCHING
 s32 func_0012D420(Obj_00131F98 *obj)
 {
     func_001B83E0(D_008DCB00.unk_70, obj, 1);

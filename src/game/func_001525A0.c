@@ -2,6 +2,8 @@
 
 #include "game/listiter.h"
 
+#ifdef NON_MATCHING
+
 /*
 ================
 func_001525A0
@@ -18,7 +20,6 @@ as void *, a const pointer or a one-member struct; none gives retail's
 registers at -O2, -Os, -O1 or -O3.
 ================
 */
-#ifdef NON_MATCHING
 ListIter *func_001525A0(ListIter *it, ListNode *node)
 {
     it->vtbl = &D_00223980;

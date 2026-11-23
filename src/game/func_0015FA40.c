@@ -2,6 +2,8 @@
 
 #include "game/listiter.h"
 
+#ifdef NON_MATCHING
+
 /*
 ================
 func_0015FA40
@@ -13,7 +15,6 @@ Parked: retail tail-calls the slot (jr $t9); the stock compilers make a
 full call with a stack frame.
 ================
 */
-#ifdef NON_MATCHING
 void *func_0015FA40(ListIter *it)
 {
     return it->vtbl->get(it);

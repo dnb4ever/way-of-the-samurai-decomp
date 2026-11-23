@@ -2,6 +2,8 @@
 
 #include "game/unsorted.h"
 
+#ifdef NON_MATCHING
+
 /*
 ================
 func_001350A0
@@ -12,7 +14,6 @@ passed through unchanged; their number is unknown.
 Parked: retail saves $s0 with sq (AGENTS.md, "Known gap").
 ================
 */
-#ifdef NON_MATCHING
 Obj_001350A0 *func_001350A0(Obj_001350A0 *obj)
 {
     func_001350D0(obj);

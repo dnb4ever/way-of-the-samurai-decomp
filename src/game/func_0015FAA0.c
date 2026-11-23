@@ -2,6 +2,8 @@
 
 #include "game/listiter.h"
 
+#ifdef NON_MATCHING
+
 /*
 ================
 func_0015FAA0
@@ -17,7 +19,6 @@ objects tells -Os from -O2, and their constructors and slot-6/7 thunks
 match under neither, so -Os is not taken as the objects' flag.
 ================
 */
-#ifdef NON_MATCHING
 ListIter *func_0015FAA0(ListIter *it)
 {
     it->node = it->node->prev;

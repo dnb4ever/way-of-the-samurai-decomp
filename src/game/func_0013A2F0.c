@@ -2,6 +2,8 @@
 
 #include "game/unsorted.h"
 
+#ifdef NON_MATCHING
+
 /*
 ================
 func_0013A2F0
@@ -14,7 +16,6 @@ the function is declared to return a value it never sets; as a void
 function the stock compilers build it in $a1 or $v0.
 ================
 */
-#ifdef NON_MATCHING
 void func_0013A2F0(Obj_0013A2F0 *obj, u32 value)
 {
     u64 word;
