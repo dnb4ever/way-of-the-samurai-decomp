@@ -92,4 +92,3 @@ src/game/func_001F02C0.c                    ee-gcc2.9-991111   -O2 -G8
 src/game/func_001F0880.c                    ee-gcc2.9-991111   -O2 -G8
 src/game/func_001F09B0.c                    ee-gcc2.9-991111   -O2 -G8
 src/game/func_001F2CC0.c                    ee-gcc2.9-991111   -O2 -G8
-src/sdk/libkernl/intr.c                     ee-gcc2.9-991111   -O2 -G0

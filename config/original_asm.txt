@@ -2,3 +2,5 @@
 # counted neither as matched nor as open work.
 #
 #   address     name        evidence
+0x00105CE0  func_00105CE0       libvu0 vector copy: lq/sq through $a2, a register no allocation picks for a two-argument copy; the functions around it in libvu0 (sceVu0TransMatrix, sceVu0InterVectorXYZ, ...) are VU0 macro-instruction bodies only inline assembly writes
+0x00105CF0  sceVu0CopyMatrix    libvu0: four lq into $a2-$t1 then four sq, the fixed-register shape of an asm body; its libvu0 neighbours are VU0 macro-instruction asm

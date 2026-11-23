@@ -32,6 +32,13 @@ int  RemoveDmacHandler(int ch, int id);
 /* DMAC channels */
 #define DMAC_SIF0           5
 
+/*
+ * SYNCL: the EE's sync.l, waiting for every preceding load and store to
+ * complete, as the INTC/DMAC mask wrappers do after the kernel call
+ * (name invented; the SDK's own spelling is not known).
+ */
+#define SYNCL() __asm__ volatile ("sync.l")
+
 int  _iEnableIntc(int ch);
 int  _iDisableIntc(int ch);
 int  _iEnableDmac(int ch);

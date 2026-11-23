@@ -14,7 +14,6 @@ u32 *kFindAddress(u32 value);
 
 #define SYSCALL_FIND_ADDRESS    131
 
-
 /*
 ================
 kFindAddress
@@ -32,7 +31,6 @@ u32 *kFindAddress(u32 value)
     return p;
 }
 
-#ifdef NON_MATCHING
 static SyscallEntry D_001FE488 = { SYSCALL_FIND_ADDRESS, kFindAddress };
 
 /*
@@ -40,9 +38,7 @@ static SyscallEntry D_001FE488 = { SYSCALL_FIND_ADDRESS, kFindAddress };
 func_00117850
 
 Returns the kernel's system call table: installs kFindAddress as a system
-call, which finds its own entry in the table. Parked: the code is
-byte-exact, but D_001FE488 holds a relocated pointer to kFindAddress and
-fncheck compares .data without applying its relocations.
+call, which finds its own entry in the table.
 ================
 */
 u32 *func_00117850(void)
@@ -50,7 +46,6 @@ u32 *func_00117850(void)
     setup(D_001FE488.num, D_001FE488.func);
     return FindAddress((u32)kFindAddress) - SYSCALL_FIND_ADDRESS;
 }
-#endif
 
 /*
 ================
