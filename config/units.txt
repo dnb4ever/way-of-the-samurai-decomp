@@ -7,3 +7,5 @@
 # see AGENTS.md, "Toolchain".
 
 src/sdk/memclr.c                            ee-gcc2.9-991111   -O2 -G8
+src/sdk/libpkt/gifpk.c                      ee-gcc2.9-991111   -O2 -G8
+src/sdk/libpkt/vifpk.c                      ee-gcc2.9-991111   -O2 -G8 -ffunction-sections
