@@ -156,6 +156,7 @@ src/game/func_001F8E70.c                    ee-gcc2.9-991111   -O2 -G8
 
 src/libc/ctype/toupper.c                    ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
 src/libc/errno/errno.c                      ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
+src/libc/locale/locale.c                    ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
 src/libc/reent/closer.c                     ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
 src/libc/reent/fstatr.c                     ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
 src/libc/reent/lseekr.c                     ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
@@ -172,12 +173,20 @@ src/libc/stdio/makebuf.c                    ee-gcc2.96         -O2 -G0 -g -fno-b
 src/libc/stdio/printf.c                     ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
 src/libc/stdio/sprintf.c                    ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
 src/libc/stdio/stdio.c                      ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
+src/libc/stdio/vfprintf.c                   ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
 src/libc/stdio/wsetup.c                     ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
 src/libc/stdlib/abort.c                     ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
 src/libc/stdlib/abs.c                       ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
+src/libc/stdlib/dtoa.c                      ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
+src/libc/stdlib/mallocr.c                   ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc -DINTERNAL_NEWLIB -DSIZE_T_SMALLER_THAN_LONG -DDEFINE_MALLOC
+src/libc/stdlib/mallocr.c:callocr           ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc -DINTERNAL_NEWLIB -DSIZE_T_SMALLER_THAN_LONG -DDEFINE_CALLOC
+src/libc/stdlib/mallocr.c:freer             ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc -DINTERNAL_NEWLIB -DSIZE_T_SMALLER_THAN_LONG -DDEFINE_FREE
+src/libc/stdlib/mallocr.c:malignr           ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc -DINTERNAL_NEWLIB -DSIZE_T_SMALLER_THAN_LONG -DDEFINE_MEMALIGN
+src/libc/stdlib/mallocr.c:reallocr          ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc -DINTERNAL_NEWLIB -DSIZE_T_SMALLER_THAN_LONG -DDEFINE_REALLOC
 src/libc/stdlib/mbtowc_r.c                  ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
 src/libc/stdlib/mprec.c                     ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
 src/libc/stdlib/rand.c                      ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
+src/libc/stdlib/strtod.c                    ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
 src/libc/stdlib/strtol.c                    ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
 src/libc/string/index.c                     ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
 src/libc/string/strcasecmp.c                ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc

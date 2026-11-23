@@ -1,0 +1,14 @@
+# Path prefixes of adopted upstream source, used verbatim (AGENTS.md, "Rules
+# this project relaxes or tightens"): newlib and libgcc files and headers.
+# Sony's own libc code (src/libc/sony/) is not upstream and is not listed.
+src/libc/ctype/
+src/libc/errno/
+src/libc/locale/
+src/libc/reent/
+src/libc/signal/
+src/libc/stdio/
+src/libc/stdlib/
+src/libc/string/
+src/libm/
+src/libgcc/
+include/libc/

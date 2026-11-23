@@ -280,10 +280,6 @@ _DEFUN (VFPRINTF, (fp, fmt0, ap),
   return _VFPRINTF_R (fp->_data, fp, fmt0, ap);
 }
 
-#ifdef NON_MATCHING
-/* Retail tests "if(expt || ndig)" after PRINT("0", 1) for expt <= 0, the
-   change of newlib commit e9cd87b82; no public revision of this file has
-   it together with exponent()'s expbuf[MAXEXP]. */
 int 
 _DEFUN (_VFPRINTF_R, (data, fp, fmt0, ap),
 	struct _reent *data _AND
@@ -809,7 +805,7 @@ number:			if ((dprec = prec) >= 0)
 					}
 				} else if (expt <= 0) {
 					PRINT("0", 1);
-					if(ndig) {
+					if(expt || ndig) {	/* back-ported: newlib e9cd87b82 */
 						PRINT(decimal_point, 1);
 						PAD(-expt, zeroes);
 						PRINT(cp, ndig);
@@ -858,7 +854,6 @@ error:
 	return (__sferror(fp) ? EOF : ret);
 	/* NOTREACHED */
 }
-#endif /* NON_MATCHING */
 
 #ifdef FLOATING_POINT
 
