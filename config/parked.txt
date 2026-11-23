@@ -1,0 +1,6 @@
+# Units whose functions are all parked in #ifdef NON_MATCHING: same format as
+# units.txt. They stay out of the gated build; `tools/build.sh -n` compiles
+# them with -DNON_MATCHING and lists how far each body is from retail, and the
+# rule checker reads them on every build.
+#
+#   unit                                    compiler           flags
