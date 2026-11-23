@@ -2,3 +2,16 @@
 # counted neither as matched nor as open work.
 #
 #   address     name        evidence
+001D1370    memchr      libc/machine/r5900/memchr.S in the Cygnus r5900 newlib; not public
+001D1450    memcmp      libc/machine/r5900/memcmp.S in the Cygnus r5900 newlib; not public
+001D14E8    memcpy      libc/machine/r5900/memcpy.S in the Cygnus r5900 newlib; not public
+001D1598    memmove     libc/machine/r5900/memmove.S in the Cygnus r5900 newlib; not public
+001D16A0    memset      libc/machine/r5900/memset.S in the Cygnus r5900 newlib; not public
+001D3718    strcat      libc/machine/r5900/strcat.S in the Cygnus r5900 newlib; not public
+001D3848    strchr      libc/machine/r5900/strchr.S in the Cygnus r5900 newlib; not public
+001D39D8    strcmp      libc/machine/r5900/strcmp.S in the Cygnus r5900 newlib; not public
+001D3B20    strcpy      libc/machine/r5900/strcpy.S in the Cygnus r5900 newlib; not public
+001D3CB8    strlen      libc/machine/r5900/strlen.S in the Cygnus r5900 newlib; not public
+001D3EC8    strncat     libc/machine/r5900/strncat.S in the Cygnus r5900 newlib; not public
+001D4078    strncmp     libc/machine/r5900/strncmp.S in the Cygnus r5900 newlib; not public
+001D4230    strncpy     libc/machine/r5900/strncpy.S in the Cygnus r5900 newlib; not public
