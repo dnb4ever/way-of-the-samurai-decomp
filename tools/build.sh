@@ -34,7 +34,7 @@ case "$REPO" in
 esac
 
 # ---- host tools ---------------------------------------------------------------
-HOSTBIN=$HOME/.cache/wots/bin
+HOSTBIN=$HOME/.cache/wots/bin/$(echo "$REPO" | tr "/" "_")
 mkdir -p "$HOSTBIN"
 for t in fncheck rules extract_elf; do
     if [ ! -x "$HOSTBIN/$t" ] || [ "$REPO/tools/$t.c" -nt "$HOSTBIN/$t" ]; then
