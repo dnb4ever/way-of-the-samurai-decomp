@@ -1,5 +1,6 @@
 disc/
 out/
+build/
 *.bin
 *.cue
 *.iso

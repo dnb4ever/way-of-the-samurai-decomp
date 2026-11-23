@@ -1,0 +1,9 @@
+# Units of the gated build: one source unit per line.
+#
+#   unit                                    compiler           flags
+#
+# compiler is a directory under tools/get_compilers.sh's destination. The
+# compiler and flags of each unit are the ones that reproduce its functions;
+# see AGENTS.md, "Toolchain".
+
+src/sdk/memclr.c                            ee-gcc2.9-991111   -O2 -G8

@@ -1,0 +1,5 @@
+// Project names: functions and data named from evidence in this binary
+// (strings, call sites, structure) or adopted from surviving source.
+// Library names recovered from other games' symbols are in symbols_debug.txt.
+//
+//   name = 0xADDRESS; // type:func size:0xN  evidence
