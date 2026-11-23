@@ -7,3 +7,65 @@
 # see AGENTS.md, "Toolchain".
 
 src/sdk/memclr.c                            ee-gcc2.9-991111   -O2 -G8
+
+src/libc/ctype/toupper.c                    ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
+src/libc/errno/errno.c                      ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
+src/libc/reent/closer.c                     ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
+src/libc/reent/fstatr.c                     ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
+src/libc/reent/lseekr.c                     ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
+src/libc/reent/readr.c                      ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
+src/libc/reent/sbrkr.c                      ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
+src/libc/reent/signalr.c                    ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
+src/libc/reent/writer.c                     ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
+src/libc/signal/signal.c                    ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
+src/libc/stdio/fflush.c                     ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
+src/libc/stdio/findfp.c                     ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
+src/libc/stdio/fvwrite.c                    ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
+src/libc/stdio/fwalk.c                      ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
+src/libc/stdio/makebuf.c                    ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
+src/libc/stdio/printf.c                     ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
+src/libc/stdio/sprintf.c                    ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
+src/libc/stdio/stdio.c                      ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
+src/libc/stdio/wsetup.c                     ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
+src/libc/stdlib/abort.c                     ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
+src/libc/stdlib/abs.c                       ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
+src/libc/stdlib/mbtowc_r.c                  ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
+src/libc/stdlib/mprec.c                     ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
+src/libc/stdlib/rand.c                      ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
+src/libc/stdlib/strtol.c                    ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
+src/libc/string/index.c                     ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
+src/libc/string/strcasecmp.c                ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
+src/libc/string/strcspn.c                   ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
+src/libc/string/strncasecmp.c               ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
+src/libc/string/strspn.c                    ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
+src/libc/string/strstr.c                    ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
+
+src/libm/common/sf_copysign.c               ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -D_IEEE_LIBM -D_FLT_LARGEST_EXPONENT_IS_NORMAL -D_FLT_NO_DENORMALS -Iinclude/libc -Isrc/libm/common
+src/libm/common/sf_scalbn.c                 ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -D_IEEE_LIBM -D_FLT_LARGEST_EXPONENT_IS_NORMAL -D_FLT_NO_DENORMALS -Iinclude/libc -Isrc/libm/common
+src/libm/math/e_acos.c                      ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -D_IEEE_LIBM -D_FLT_LARGEST_EXPONENT_IS_NORMAL -D_FLT_NO_DENORMALS -Iinclude/libc -Isrc/libm/common
+src/libm/math/e_atan2.c                     ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -D_IEEE_LIBM -D_FLT_LARGEST_EXPONENT_IS_NORMAL -D_FLT_NO_DENORMALS -Iinclude/libc -Isrc/libm/common
+src/libm/math/e_sqrt.c                      ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -D_IEEE_LIBM -D_FLT_LARGEST_EXPONENT_IS_NORMAL -D_FLT_NO_DENORMALS -Iinclude/libc -Isrc/libm/common
+src/libm/math/ef_acos.c                     ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -D_IEEE_LIBM -D_FLT_LARGEST_EXPONENT_IS_NORMAL -D_FLT_NO_DENORMALS -Iinclude/libc -Isrc/libm/common
+src/libm/math/ef_asin.c                     ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -D_IEEE_LIBM -D_FLT_LARGEST_EXPONENT_IS_NORMAL -D_FLT_NO_DENORMALS -Iinclude/libc -Isrc/libm/common
+src/libm/math/ef_atan2.c                    ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -D_IEEE_LIBM -D_FLT_LARGEST_EXPONENT_IS_NORMAL -D_FLT_NO_DENORMALS -Iinclude/libc -Isrc/libm/common
+src/libm/math/ef_rem_pio2.c                 ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -D_IEEE_LIBM -D_FLT_LARGEST_EXPONENT_IS_NORMAL -D_FLT_NO_DENORMALS -Iinclude/libc -Isrc/libm/common
+src/libm/math/ef_sqrt.c                     ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -D_IEEE_LIBM -D_FLT_LARGEST_EXPONENT_IS_NORMAL -D_FLT_NO_DENORMALS -Iinclude/libc -Isrc/libm/common
+src/libm/math/kf_cos.c                      ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -D_IEEE_LIBM -D_FLT_LARGEST_EXPONENT_IS_NORMAL -D_FLT_NO_DENORMALS -Iinclude/libc -Isrc/libm/common
+src/libm/math/kf_rem_pio2.c                 ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -D_IEEE_LIBM -D_FLT_LARGEST_EXPONENT_IS_NORMAL -D_FLT_NO_DENORMALS -Iinclude/libc -Isrc/libm/common
+src/libm/math/kf_sin.c                      ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -D_IEEE_LIBM -D_FLT_LARGEST_EXPONENT_IS_NORMAL -D_FLT_NO_DENORMALS -Iinclude/libc -Isrc/libm/common
+src/libm/math/s_atan.c                      ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -D_IEEE_LIBM -D_FLT_LARGEST_EXPONENT_IS_NORMAL -D_FLT_NO_DENORMALS -Iinclude/libc -Isrc/libm/common
+src/libm/math/s_fabs.c                      ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -D_IEEE_LIBM -D_FLT_LARGEST_EXPONENT_IS_NORMAL -D_FLT_NO_DENORMALS -Iinclude/libc -Isrc/libm/common
+src/libm/math/s_isinf.c                     ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -D_IEEE_LIBM -D_FLT_LARGEST_EXPONENT_IS_NORMAL -D_FLT_NO_DENORMALS -Iinclude/libc -Isrc/libm/common
+src/libm/math/s_isnan.c                     ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -D_IEEE_LIBM -D_FLT_LARGEST_EXPONENT_IS_NORMAL -D_FLT_NO_DENORMALS -Iinclude/libc -Isrc/libm/common
+src/libm/math/sf_atan.c                     ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -D_IEEE_LIBM -D_FLT_LARGEST_EXPONENT_IS_NORMAL -D_FLT_NO_DENORMALS -Iinclude/libc -Isrc/libm/common
+src/libm/math/sf_cos.c                      ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -D_IEEE_LIBM -D_FLT_LARGEST_EXPONENT_IS_NORMAL -D_FLT_NO_DENORMALS -Iinclude/libc -Isrc/libm/common
+src/libm/math/sf_fabs.c                     ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -D_IEEE_LIBM -D_FLT_LARGEST_EXPONENT_IS_NORMAL -D_FLT_NO_DENORMALS -Iinclude/libc -Isrc/libm/common
+src/libm/math/sf_floor.c                    ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -D_IEEE_LIBM -D_FLT_LARGEST_EXPONENT_IS_NORMAL -D_FLT_NO_DENORMALS -Iinclude/libc -Isrc/libm/common
+src/libm/math/sf_sin.c                      ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -D_IEEE_LIBM -D_FLT_LARGEST_EXPONENT_IS_NORMAL -D_FLT_NO_DENORMALS -Iinclude/libc -Isrc/libm/common
+src/libm/math/w_acos.c                      ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -D_IEEE_LIBM -D_FLT_LARGEST_EXPONENT_IS_NORMAL -D_FLT_NO_DENORMALS -Iinclude/libc -Isrc/libm/common
+src/libm/math/w_atan2.c                     ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -D_IEEE_LIBM -D_FLT_LARGEST_EXPONENT_IS_NORMAL -D_FLT_NO_DENORMALS -Iinclude/libc -Isrc/libm/common
+src/libm/math/w_sqrt.c                      ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -D_IEEE_LIBM -D_FLT_LARGEST_EXPONENT_IS_NORMAL -D_FLT_NO_DENORMALS -Iinclude/libc -Isrc/libm/common
+src/libm/math/wf_acos.c                     ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -D_IEEE_LIBM -D_FLT_LARGEST_EXPONENT_IS_NORMAL -D_FLT_NO_DENORMALS -Iinclude/libc -Isrc/libm/common
+src/libm/math/wf_asin.c                     ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -D_IEEE_LIBM -D_FLT_LARGEST_EXPONENT_IS_NORMAL -D_FLT_NO_DENORMALS -Iinclude/libc -Isrc/libm/common
+src/libm/math/wf_atan2.c                    ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -D_IEEE_LIBM -D_FLT_LARGEST_EXPONENT_IS_NORMAL -D_FLT_NO_DENORMALS -Iinclude/libc -Isrc/libm/common
+src/libm/math/wf_sqrt.c                     ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -D_IEEE_LIBM -D_FLT_LARGEST_EXPONENT_IS_NORMAL -D_FLT_NO_DENORMALS -Iinclude/libc -Isrc/libm/common

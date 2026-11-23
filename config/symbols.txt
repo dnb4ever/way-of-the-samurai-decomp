@@ -3,3 +3,31 @@
 // Library names recovered from other games' symbols are in symbols_debug.txt.
 //
 //   name = 0xADDRESS; // type:func size:0xN  evidence
+
+// newlib libc and libm (src/libc, src/libm): functions placed by fncheck -F
+// from the adopted newlib sources, and the data they reference.
+acos = 0x001C9008; // type:func size:0x14  newlib libm/math/w_acos.c
+atan2 = 0x001C9020; // type:func size:0x14  newlib libm/math/w_atan2.c
+sqrt = 0x001C9038; // type:func size:0x14  newlib libm/math/w_sqrt.c
+acosf = 0x001C9050; // type:func size:0x14  newlib libm/math/wf_acos.c
+asinf = 0x001C9068; // type:func size:0x14  newlib libm/math/wf_asin.c
+atan2f = 0x001C9080; // type:func size:0x14  newlib libm/math/wf_atan2.c
+sqrtf = 0x001C9098; // type:func size:0x14  newlib libm/math/wf_sqrt.c
+__errno = 0x001CF728; // type:func size:0xc  newlib libc/errno/errno.c
+_cleanup_r = 0x001CFA20; // type:func size:0x1c  newlib libc/stdio/findfp.c
+index = 0x001D0430; // type:func size:0x14  newlib libc/string/index.c
+_localeconv_r = 0x001D04D8; // type:func size:0xc  newlib libc/locale/locale.c
+_malloc_r = 0x001D0C10; // type:func size:0x728  newlib libc/stdlib/mallocr.c
+_getpid_r = 0x001D33A0; // type:func size:0x14  newlib libc/reent/signalr.c
+_vfprintf_r = 0x001D5860; // type:func size:0x1670  newlib libc/stdio/vfprintf.c
+_impure_ptr = 0x00210F40; // type:data size:0x4  newlib libc/reent/impure.c; read by printf, sprintf
+errno = 0x00C290C8; // type:data size:0x4  set by the newlib reent wrappers (_close_r)
+_exit = 0x001000B8; // type:func  called as _exit(1) by newlib abort.c (abort at 0x1CE150)
+__ieee754_atan2 = 0x001C64E0; // type:func size:0x33c  newlib libm/math/e_atan2.c
+atan = 0x001C8428; // type:func size:0x4c8  newlib libm/math/s_atan.c
+_free_r = 0x001CFAF0; // type:func size:0x2f4  newlib libc/stdlib/mallocr.c (DEFINE_FREE); called by __swsetup
+__malloc_lock = 0x001D1760; // type:func size:0x68  called by newlib _malloc_r (MALLOC_LOCK)
+close = 0x0010F348; // type:func  called by newlib _close_r (MISSING_SYSCALL_NAMES)
+lseek = 0x0010F358; // type:func  called by newlib _lseek_r (MISSING_SYSCALL_NAMES)
+isatty = 0x0010F410; // type:func  called by newlib __smakebuf
+getpid = 0x0010F430; // type:func  called by newlib _getpid_r (MISSING_SYSCALL_NAMES)

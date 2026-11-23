@@ -4,3 +4,12 @@
 # rule checker reads them on every build.
 #
 #   unit                                    compiler           flags
+# _vfprintf_r parked: see the note at its definition.
+src/libc/stdio/vfprintf.c                   ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
+
+# Byte-exact code whose data referents hold relocated pointers (switch tables,
+# string and bin pointers); fncheck compares those referents unrelocated.
+src/libc/locale/locale.c                    ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
+src/libc/stdlib/dtoa.c                      ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
+src/libc/stdlib/mallocr.c                   ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc -DINTERNAL_NEWLIB -DSIZE_T_SMALLER_THAN_LONG -DDEFINE_MALLOC
+src/libc/stdlib/strtod.c                    ee-gcc2.96         -O2 -G0 -g -fno-builtin -DMALLOC_ALIGNMENT=16 -DMISSING_SYSCALL_NAMES -Iinclude/libc
