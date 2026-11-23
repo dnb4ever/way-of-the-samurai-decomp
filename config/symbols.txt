@@ -27,3 +27,6 @@ sceSifRemoveCmdHandler = 0x00111208; // type:func size:0x28  size: symbols_debug
 sceSifExitRpc = 0x00111760; // type:func size:0x24  size: symbols_debug's 0x278 runs into the packet functions after it
 _InitSys = 0x001178c0; // type:func size:0x3c  size: symbols_debug's 0x110 runs past the function
 sceSifLoadStartModuleBuffer = 0x00116670; // type:func size:0x1c  passes the caller's result pointer to the loader sceSifLoadModuleBuffer calls with its own; symbols_debug places it at 0x116688
+defMain = 0x001EB950; // type:func size:0x18  ezmpeg sample, C++: defMain__FPv in symbols_debug.txt
+videoDecDelete = 0x001EE1A0; // type:func size:0x34  ezmpeg sample, C++: videoDecDelete__FP8VideoDec in symbols_debug.txt
+videoDecSetStream = 0x001EE200; // type:func size:0x20  ezmpeg sample, C++: videoDecSetStream__FP8VideoDeciiPFP7sceMpegP13sceMpegCbDataPv_iPv in symbols_debug.txt

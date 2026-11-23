@@ -426,6 +426,50 @@ static uint32_t RetailWant(uint32_t type, uint32_t word, uint32_t pc)
     return want;
 }
 
+/*
+ * Compare n bytes of an object's data section at off with retail bytes,
+ * after applying the section's own word relocations (jump tables, pointer
+ * tables). A word whose target this object cannot place yet is not compared.
+ */
+static int DataMatches(const Object *o, int sec, uint32_t off, const uint8_t *retail, uint32_t n)
+{
+    uint8_t  buf[16];
+    int      nrel, i;
+    Rel     *rels = ObjectRelocs(o, sec, &nrel);
+
+    memcpy(buf, o->data + o->sh[sec].offset + off, n);
+    for (i = 0; i < nrel; i++) {
+        const Rel *r = &rels[i];
+        const Sym *t = &o->syms[r->sym];
+        uint32_t   at, S, A;
+        int        placed = 0;
+
+        if (r->offset < off || r->offset + 4 > off + n)
+            continue;
+        at = r->offset - off;
+        if (r->type != R_MIPS_32) {
+            memcpy(buf + at, retail + at, 4);
+            continue;
+        }
+        A = r->hasAddend ? (uint32_t)r->addend : Rd32(buf + at);
+        if (t->shndx == SHN_ABS) {
+            S = t->value;
+            placed = 1;
+        } else if (t->shndx != SHN_UNDEF && t->shndx != SHN_COMMON && o->secBaseSet[t->shndx]) {
+            S = o->secBase[t->shndx] + t->value;
+            placed = 1;
+        } else if (t->shndx == SHN_UNDEF || t->type != STT_SECTION) {
+            placed = ResolveName(t->name, &S);
+        }
+        if (placed)
+            Wr32(buf + at, S + A);
+        else
+            memcpy(buf + at, retail + at, 4);
+    }
+    free(rels);
+    return memcmp(buf, retail, n) == 0;
+}
+
 /* Check one function. `work` holds a writable copy of its section. */
 static int CheckFunction(Object *o, const Sym *fn, uint32_t addr, uint8_t *patch, char *why, size_t whyLen)
 {
@@ -547,7 +591,7 @@ static int CheckFunction(Object *o, const Sym *fn, uint32_t addr, uint8_t *patch
                 if (n > 16)
                     n = 16;
                 doff = RetailOffset(ref, n);
-                if (n && (doff < 0 || memcmp(g_image + doff, o->data + d->offset + off, n) != 0)) {
+                if (n && (doff < 0 || !DataMatches(o, s->shndx, off, g_image + doff, n))) {
                     snprintf(why, whyLen, "%s+0x%X differs from retail %08X", SecName(o, s->shndx), off, ref);
                     goto fail;
                 }
