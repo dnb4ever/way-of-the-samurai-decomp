@@ -597,7 +597,6 @@ sceVu0ITOF12Vector = 0x0015b4f0; // type:func size:0x10 from:unique prototypes:1
 __dt__Q210CRecording5FrameFv = 0x0017d520; // type:func size:0x54 from:unique prototypes:45 family:shared
 iPutTLBEntry = 0x001878e0; // type:func size:0x10 from:link-order prototypes:2 family:library
 iPutTLBEntry = 0x00199c38; // type:func size:0x10 from:link-order prototypes:2 family:library
-cvFsIsExistDevice = 0x00199c50; // type:func size:0x20 from:unique prototypes:402 family:library
 __ieee754_acos = 0x001c5db8; // type:func size:0x724 from:unique prototypes:57 family:shared
 __ieee754_sqrt = 0x001c6820; // type:func size:0x31c from:unique prototypes:244 family:shared
 __ieee754_acosf = 0x001c6b40; // type:func size:0x424 from:unique prototypes:197 family:shared

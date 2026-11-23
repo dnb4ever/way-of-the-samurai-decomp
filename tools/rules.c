@@ -189,6 +189,21 @@ static int LoadSource(const char *path)
 /* functions                                                           */
 /* ------------------------------------------------------------------ */
 
+static int IsIdentChar(int c) { return isalnum(c) || c == '_'; }
+
+/* whole-word search used before the finding helpers are defined */
+static int FindWordIn(const char *s, const char *word)
+{
+    size_t      n = strlen(word);
+    const char *p = s;
+    while ((p = strstr(p, word)) != NULL) {
+        if ((p == s || !IsIdentChar((unsigned char)p[-1])) && !IsIdentChar((unsigned char)p[n]))
+            return 1;
+        p += n;
+    }
+    return 0;
+}
+
 /* find function definitions: a '{' at depth 0 preceded by "name(...)" */
 static void FindFunctions(int fi)
 {
@@ -212,8 +227,12 @@ static void FindFunctions(int fi)
                     /* prev holds the text since the last ';' or '}' at depth 0 */
                     char *paren = strrchr(prev, ')');
                     char *open;
-                    if (paren && !strstr(prev, "struct") && !strstr(prev, "union") &&
-                        !strstr(prev, "enum") && !strstr(prev, "typedef") && !strchr(prev, '=')) {
+                    /* a definition: the declarator's ')' is the last thing before '{' */
+                    const char *tail = prev + strlen(prev);
+                    while (tail > prev && isspace((unsigned char)tail[-1]))
+                        tail--;
+                    if (paren && tail > prev && tail[-1] == ')' && !strchr(prev, '=') &&
+                        !FindWordIn(prev, "typedef")) {
                         int level = 0;
                         open = paren;
                         while (open > prev) {
@@ -242,10 +261,29 @@ static void FindFunctions(int fi)
                                 cur = g_numFuncs++;
                                 /* include the declarator lines above */
                                 {
-                                    int back = line;
-                                    while (back > 0 && strchr(f->lineCode[back], '(') == NULL)
-                                        back--;
-                                    fn->first = back + 1;
+                                    /* walk back to the line holding the parameter list's '(' */
+                                    int back = line, balance = 0, found = 0;
+                                    while (back >= 0 && !found) {
+                                        const char *c = f->lineCode[back];
+                                        const char *e = c + strlen(c);
+                                        if (back == line) {
+                                            const char *brace = strchr(c, '{');
+                                            if (brace)
+                                                e = brace;
+                                        }
+                                        while (e > c) {
+                                            e--;
+                                            if (*e == ')')
+                                                balance++;
+                                            else if (*e == '(' && --balance == 0) {
+                                                found = 1;
+                                                break;
+                                            }
+                                        }
+                                        if (!found)
+                                            back--;
+                                    }
+                                    fn->first = (back < 0 ? 0 : back) + 1;
                                 }
                             }
                         }
